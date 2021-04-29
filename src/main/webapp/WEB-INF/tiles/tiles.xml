@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+    <definition name="mainpage" template="/WEB-INF/views/home.jsp">
+        <put-attribute name="title" value="YOEGIMOYEO"/>
+        <put-attribute name="css" value="/WEB-INF/views/script/css.jsp" />
+        <put-attribute name="js" value="/WEB-INF/views/script/js.jsp" />
+        <put-attribute name="header" value="/WEB-INF/views/header.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/board/boardList.jsp" />
+        <put-attribute name="aside" value="/WEB-INF/views/aside.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" /> 
+    </definition>
+    
+   	
+   	<definition name="boardMain" extends="mainpage">
+   		<put-attribute name="title" value="YOEGIMOYEO"/>
+   		<put-attribute name="body" value="/WEB-INF/views/board/boardMain.jsp" />
+   	</definition>
+   	
+   	<definition name="boardWrite" extends="mainpage">
+   		<put-attribute name="title" value="글쓰기"/>
+   		<put-attribute name="body" value="/WEB-INF/views/board/boardWrite.jsp" />
+   	</definition>
+   	
+   	<definition name="boardRead" extends="mainpage">
+   		<put-attribute name="title" value="글보기"/>
+   		<put-attribute name="body" value="/WEB-INF/views/board/boardRead.jsp" />
+   	</definition>
+   	
+   	<definition name="boardUpdate" extends="mainpage">
+   		<put-attribute name="title" value="글수정"/>
+   		<put-attribute name="body" value="/WEB-INF/views/board/boardUpdate.jsp" />
+   	</definition>
+   	
+   	<definition name="boardDelete" extends="mainpage">
+   		<put-attribute name="title" value="글수정"/>
+   		<put-attribute name="body" value="/WEB-INF/views/board/boardDelete.jsp" />
+   	</definition>
+  
+</tiles-definitions>

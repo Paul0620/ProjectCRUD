@@ -1,0 +1,141 @@
+/* 모든 페이지 설정 */
+@import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url(https://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+
+.navbar-brand, h1, h2, h3, h4, h5 { font-family:'Jeju Gothic' }
+body { 
+	font-family:'Nanum Gothic';  	
+}
+
+#body_aside {
+    margin-right: 0px !important;
+}
+
+
+/* header.jsp 폼설정 ============================================================== */
+
+body { 
+	padding-top:90px;
+}
+
+/* 홈페이지 이름 크기 설정 */
+.navbar-brand {
+	font-size:35px;
+	cursor:pointer;
+}
+
+/* 상단 메뉴 글씨 설정 */
+#top_menu {
+	font-size:18px;
+}
+
+/* 더보기 메뉴 글씨설정 */
+.dropdown-item {
+	font-size:16px;
+}
+
+.nav-link, .dropdown-item {
+	cursor:pointer;
+}
+
+
+/* aside.jsp 폼설정=============================================================== */
+/* 메인페이지 화면에서 사이드바메뉴 크기설정 */
+
+
+#aside {
+	padding-right: 0px; 
+	padding-left: 0px;
+}
+
+/* 사이드바 메뉴 간격 설정 */
+.card {
+	margin-bottom:10px;
+}
+
+/* 로그인,회원가입버튼 설정 */
+#login_btn {
+	color: #f8f9fa;
+	background-color: #343a40;
+	font-size:18px;
+	font-weight:bold;
+	padding: 0.500rem;
+}
+#login_btn:hover {
+	color: #343a40;
+	background: #f8f9fa;
+}
+
+/* 회원가입, 로그아웃버튼 설정 */
+#join_btn, #logout_btn, #memberView_btn{
+	color: #343a40;
+	background: #f8f9fa;
+	font-size:18px;
+	font-weight:bold;
+	padding: 0.500rem;
+}
+ #join_btn:hover, #logout_btn:hover, #memberView_btn:hover {
+	color: #f8f9fa;
+	background: #343a40;
+	border-radius: .25rem;
+}
+
+/* 프로필사진 설정 */
+#main_avatar {
+	margin-top:0px;
+}
+/* 프로필 파일업로드 바 설정 */
+#profile_file {
+	width:268px;
+	padding-bottom:10px;
+}
+img {
+	width: 220px;
+	height: 240px !important;
+	object-fit:contain;
+}
+
+/* 로그인 후 닉네임 표시 */
+#login_nickname{
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+/* 로그인 후 메세지,메일 등 버튼 설정 */
+#btns {
+	margin-left:0px;
+	margin-bottom: 10px;
+	border-radius:.25rem;
+	padding: 0.500rem;
+	font-size:18px;
+	background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+#message:hover, #mail:hover, #admin:hover {
+	color:#f8f9fa;
+	background:#343a40;
+}
+
+/* 활동기록설정 */
+#my_active {
+	margin-bottom:10px;
+}
+
+/* 검색버튼 설정 */
+.card-body {
+	border-radius: .25rem;
+}
+
+/* 검색바 설정 */
+#serch_input_btn {
+    padding:0px;
+}
+
+
+/* footer 설정 ==================================================================*/
+footer {
+  margin-top:50px;
+}

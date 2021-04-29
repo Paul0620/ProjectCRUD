@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+    
+<mapper namespace="board">  
+ 	
+<!--  1.모든 필드를 검색  2.번호 메기기 3.보여줄 필드
+	   || 문자 결합으로 인해서 ${}가 아닌 #{}으로 입력, xml에서는 관계연산자(>, <을 인식하지 못해서 인식시켜줘야함) -->
+<select  id="selectList"  parameterType="map"  resultType="BoardCommand"  >
+    select postnum,id,boardnum,type,nickname,title,content,regdate,readcnt,recommand,best
+            from ( select a.*, rownum rnum
+                from (select * from post_tb
+                   <where>
+                     <if test="keyWord!=null and keyField=='title'">
+                            title like '%' || #{keyWord} || '%'
+                     </if>
+                     <if test="keyWord!=null and keyField=='nickname'">
+                            nickname like '%' || #{keyWord} || '%'
+                     </if>
+                     <if test="keyWord!=null and keyField=='content'">
+                            content like '%' || #{keyWord} || '%'
+                     </if>
+                     <if test="keyWord!=null and keyField=='all'">
+                            title like '%' || #{keyWord} || '%'  or
+                            nickname like '%' || #{keyWord} || '%'  or
+                            content like '%' || #{keyWord} || '%'
+                     </if>
+ 					</where> 
+ 					order by postnum desc ) a )
+	<![CDATA[where rnum >=#{start} AND rnum <=#{end}]]>
+</select>
+ 
+
+<!-- 2.검색어에 해당하는 총 레코드 수 구하기 java.lang.Integer or Integer or int -->
+<select id="totalCount" parameterType="map" resultType="Integer">
+    select count(*) from post_tb
+        <where>
+            <if test="keyWord!=null and keyField=='title'">
+                 title like '%' || #{keyWord} || '%'
+            </if>
+            <if test="keyWord!=null and keyField=='nickname'">
+                 nickname like '%' || #{keyWord} || '%'
+            </if>
+            <if test="keyWord!=null and keyField=='content'">
+                 content like '%' || #{keyWord} || '%'
+            </if>
+            <if test="keyWord!=null and keyField=='all'">
+                 title like '%' || #{keyWord} || '%'  or
+                 nickname like '%' || #{keyWord} || '%'  or
+                 content like '%' || #{keyWord} || '%'
+            </if>
+        </where>
+ </select>
+ 			
+ 			
+ <!-- 3.최대값구하기(java.lang.Integer (Integer, int) -->
+ <select id="getNewPostnum" resultType="int" >
+    select max(postnum) from post_tb
+ </select>
+ 
+ 
+ <!-- 4.글쓰기 (com.board.domain.BoardCommand) resultType(x) -->
+ <insert id="insertPost" parameterType="BoardCommand">
+     insert into post_tb(postnum,id,boardnum,type,nickname,title,content,regdate,readcnt,recommand,best)
+     values(#{postnum},#{id},#{boardnum},#{type},#{nickname},#{title},#{content},sysdate,0,0,0) 
+     
+ </insert>			
+ 
+ 
+ <!-- 5.글상세보기(레코드 한개 출력)  -->
+ <select id="selectPost" parameterType="Integer" resultType="BoardCommand">
+    select * from post_tb where postnum=#{postnum}
+ </select>
+ 
+ 
+ <!-- 6.조회수 증가 -->
+ <update id="readcntUp" parameterType="Integer">
+    update post_tb set readcnt=readcnt+1 where postnum=#{postnum}
+ </update>
+ 
+ 
+ <!-- 7.글수정하기 
+ 		namespace="Board" -> 메서드에서 호출할 때 사용
+ 		형식)네임스페이스명.id값을 부여
+ -->
+ <update id="updatePost" parameterType="BoardCommand">
+ 	update post_tb set title=#{title},content=#{content}
+ 	where postnum=#{postnum}
+ </update>
+ 
+ 
+ <!-- 8.글삭제하기 -->
+ <delete id="deletePost" parameterType="Integer">
+ 	delete from post_tb where postnum=#{postnum}
+ </delete>
+ 
+ 
+ <!-- 9.조회수 높은순으로 정렬  -->
+ <select id="listSet" parameterType="map" resultType="int">
+ 	select * from post_tb order by readcnt desc
+ 	
+ 	 select * from post_tb order by 
+        <where>
+            <if test="setWord!=null and setField=='readcnt'">
+                 readcnt desc
+            </if>
+            <if test="setWord!=null and setField=='recommand'">
+                 recommand desc
+            </if>
+            <if test="setWord!=null and setField=='postnum'">
+                 postnum
+            </if>
+        </where>
+ </select>
+		
+</mapper>
+
+
+
+
+
+
+

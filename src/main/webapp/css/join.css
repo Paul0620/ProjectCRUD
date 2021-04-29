@@ -1,0 +1,112 @@
+/* 모든 페이지 설정 */
+@import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url(https://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+
+.navbar-brand, h1, h2, h3, h4, h5 { font-family:'Jeju Gothic' }
+body { 
+	font-family:'Nanum Gothic';  	
+}
+
+
+/* join 회원가입 설정 ============================================================*/
+
+.container {
+	margin-top: 80px;
+	margin-bottom: 80px;
+}
+
+h1 {
+	font-weight:bold;
+	font-size:50px;
+}
+
+
+/* 회원가입 페이지 타이틀 중앙 정리 */
+.page-header {
+	margin-bottom: 50px;
+	cursor:pointer;
+}
+/* 각 입력창 블럭 간격 나누기 */
+#block1, #block2, #block3, #block4 {
+	margin-bottom:60px;
+}
+
+/* 중복체크, 주소검색 버튼 위치 조정 */
+#check_btn, #check_btn1, #search_btn {
+	padding-bottom:10px;
+}
+
+
+/* 프로필 사진 테이블 설정 */
+img {
+	width:220px;
+	height:240px !important;
+	object-fit:contain;
+	margin-bottom:10px;
+}
+
+
+/* 주소입력창 간격조절 */
+#zipNo, #roadAddrPart1, #roadAddrPart2, #roadAddrPart3 {
+	margin-bottom:20px;
+}
+
+
+/* 회원가입 버튼 설정 */
+#check-btn {
+	line-height:2.0;
+	font-weight:bold;
+	font-size:25px;
+}
+
+/* 타이틀 글자 진하게 */
+label {
+	font-weight:bolder;
+}
+
+/* 성별선택 체크박스 간격조절 */
+.radio-inline {
+	font-weight:normal;
+	display: inline-block;
+    padding-left: 20px;
+    margin-bottom: 0;
+    font-weight: 400;
+    vertical-align: middle;
+    cursor: pointer;
+}
+#option1, #option2 {
+	margin-right:5px;	
+}
+
+
+/* joinPro 회원가입확인창 ============================================================== */
+/* 로그인확인 폼 위치 설정 */
+#joinPro {
+	margin-top:250px;
+}
+
+
+#ment {
+	text-align:center;
+	margin-top:50px;
+	margin-bottom:30px;
+}
+
+
+/* 로그인,회원가입버튼 설정 */
+#join_login_btn {
+	color: #f8f9fa;
+	background-color: #343a40;
+	font-size:20px;
+	font-weight:bold;
+	line-height:2.0;
+}
+
+#join_login_btn:hover {
+	color: #343a40;
+	background: #f8f9fa;
+}
+
+
+

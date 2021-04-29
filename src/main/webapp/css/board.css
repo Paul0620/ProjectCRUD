@@ -1,0 +1,168 @@
+/* body(board) 폼설정 =============================================================*/
+/* 홈페이지 메인화면에서 보이는 크기 설정 */
+
+#body {
+	padding-right: 0px;
+	padding-left: 0px; 
+}
+
+/* 게시판 타이틀명 위치설정 */
+h3 {
+	margin-top:6px;
+	margin-bottom:0px;
+}
+/* 게시판 간격 벌리기 */
+#board1 {
+	margin-bottom:30px;
+}
+
+/* 메뉴탭 글씨색,크기설정 */
+#board1_menu, #board2_menu {
+	font-size:13px;
+	color:#343a40;
+	font-size:16px;
+
+}
+/* nav-link 클래스 설정 aside.css, main.css */
+.nav-link {
+	font-weight:bold;
+	color:#f8f9fa;
+}
+
+.nav-pills > li > a:hover {
+	color:#f8f9fa;
+}
+
+#board_list {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+/* 게시판 설정================================================================= */
+#head_board {
+   margin-bottom:0px;
+   padding-top: 5px;
+}
+
+#head_board2 {
+	padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+/* 게시판 셀렉트박스 크기조절 */
+#align_board {
+	width:95px !important;
+	margin-left: 10px;
+	vertical-align:middle;
+	text-align-last:center;
+}
+
+/* 게시글 제목 밑줄제거 */
+#board_title {
+	text-decoration:none !important;
+}
+
+#board_title:hover {
+	text-decoration:none !important; 
+}
+
+/* 글쓰기, 검색 버튼 설정 */
+#write_btn, #list_btn{
+	border-color:#ced4da;
+    margin-right: 10px;
+}
+
+/* 검색 보드, 버튼 설정 */
+#search_board {
+	width:120px !important;
+	vertical-align:middle;
+	text-align-last:center;
+}
+
+ #search_btn {
+	border-color:#ced4da;
+}
+
+/* 페이지넘버 설정 */
+.pagination {
+	font-family:"Roboto", sans-serif;
+}
+
+.pagination li a {
+	color:#333 !important;
+} 
+
+.page-item.active .page-link {
+	color:#fff !important;
+	background:#444 !important;
+	border-color:#444 !important;
+}
+
+
+/* 글쓰기화면 설정=============================================================== */
+/* 간격설정 */
+label {
+	font-weight:bold;
+	font-size:18px;
+}
+
+#title {
+	margin-bottom:15px;
+}
+
+#upload {
+	
+}
+
+#submit_write {
+    padding-left: 80px !important;
+}
+
+#upload {
+	margin-top:5px !important;
+}
+
+/* 작성 후 화면 ==================================================================*/
+/* 프로필 사진 크기 설정 */
+#read_profile{
+	padding-right:0px;
+	height: 149px !important;
+}
+
+#read2_profile {
+	margin-top:0px;
+	margin-bottom:0px;
+	padding-left:0px;
+}
+
+#read_profile_img {
+	width:130px;
+	height: 149px !important;
+}
+
+#message {
+	color: black !important;
+}
+
+/* 게시글 내용박스 설정 */
+#read_content{
+	height:300px;
+    margin-bottom: 0px;
+}
+
+#read_title{
+	font-size:20px;
+}
+
+#read_table{
+	margin-bottom:0px;
+}
+
+#read_setbtn{
+	padding-top:5px !important;
+	padding-bottom:0px !important;
+}
+
+#read_update{
+    margin-right: 1px !important;
+}
