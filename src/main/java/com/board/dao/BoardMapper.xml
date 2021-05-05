@@ -116,7 +116,7 @@
 <!-- 댓글작성 -->
 <insert id="insertComment" parameterType="CommentCommand">
 	insert into comment_tb(commentnum,postnum,id,nickname,content,regdate,good,best)
-	values(#{commentnum},#{postnum},#{id},#{nickname},#{content},sysdate,0,0)
+	values((select nvl(max(commentnum),0)+1 from comment_tb),#{postnum},#{id},#{nickname},#{content},sysdate,0,0)
 </insert>
 
 <!-- 댓글수정 -->

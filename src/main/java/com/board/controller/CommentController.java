@@ -1,18 +1,10 @@
 package com.board.controller;
 
-import java.net.http.HttpHeaders;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
-import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.board.command.CommentCommand;
 import com.board.dao.BoardDao;
-import com.member.command.LoginCommand;
+import com.member.command.MemberCommand;
 
 @Component
 @Controller
@@ -40,7 +32,7 @@ public class CommentController {
 	private String insertComment(@ModelAttribute("comment") CommentCommand comment, HttpServletRequest request) {
 		
 		HttpSession session=request.getSession();
-		LoginCommand login=(LoginCommand)session.getAttribute("login");
+		MemberCommand login=(MemberCommand)session.getAttribute("resultLogin");
 		
 		try {
 			comment.setId(login.getId());

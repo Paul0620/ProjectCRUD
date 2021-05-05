@@ -69,7 +69,7 @@ public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDao {
 	}
 	
 	//글삭제하기
-	//1.sql구문확인(mapper파일) -> 2.aptjemdhk aoroqustnghkrdls
+	//1.sql구문확인(mapper파일) -> 2.메서드와 매개변수확인
 	public void deletePost(Integer postnum) {
 		// TODO Auto-generated method stub
 		getSqlSession().delete("deletePost",postnum);

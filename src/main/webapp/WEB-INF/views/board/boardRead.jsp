@@ -77,6 +77,8 @@
 	<div class="col-sm-12" id="commentListForm"><br>
 		<div>
 			<form id="commentForm" name="commentForm" method="post">
+			<!-- 댓글정보 보내기 -->
+			<input type="hidden" id="postnum" name="postnum" value="${resultLogin.postnum}">
 		        <div>
 		            <div>
 		                <span><strong>Comments</strong></span> <span id="commentCnt"></span>
@@ -87,23 +89,31 @@
 		                        <td id="commentTextForm">
 		                            <textarea class="form-control" rows="3" cols="30" id="content" name="content" placeholder="댓글을 입력하세요"></textarea>
 		                            <div>
-		                                <input type="button" class="btn btn-dark float-right" value="등록" onClick="fn_comment('${result.boardnum}')">
+		                                <input type="submit" class="btn btn-dark float-right" value="등록" onClick="fn_comment('${board.postnum}')">
 		                            </div>
 		                        </td>
 		                    </tr>
 		                </table>
 		            </div>
-		        </div>
-		        <input type="hidden" id="boardnum" name="boardnum" value="${result.boardnum}" />        
+		        </div>  
 		    </form>
 	    </div>
 	    <!-- 댓글리스트폼 -->
-	    <div>
-			<form id="commentListForm" name="commentListForm" method="post">
-		        <div id="commentList">
-		        </div>
-		    </form>
-	    </div>
+	    <!-- 댓글 -->
+		<div id="reply">
+		  <ol class="replyList">
+		    <c:forEach items="${listComment}" var="listComment">
+		      <li>
+		        <p>
+		        작성자 : ${listComment.nickname}<br />
+		        작성 날짜 : ${listComment.regdate}
+		        </p>
+		
+		        <p>${listComment.content}</p>
+		      </li>
+		    </c:forEach>   
+		  </ol>
+		</div>
 	</div>
 	
 </div>
