@@ -81,7 +81,7 @@ public class MemberController {
 		}
 		
 		//메인페이지로 이동
-		return "redirect:/main/home.do"; 
+		return "redirect:/main/list.do"; 
 	}
 	
 	//로그인 페이지로 이동
@@ -108,14 +108,14 @@ public class MemberController {
 			session.setAttribute("resultLogin", resultLogin);
 	        System.out.println("로그인!");   
 		}
-			return "redirect:/main/home.do";
+			return "redirect:/main/list.do";
 	}
 	
 	//로그아웃
 	@RequestMapping("/main/logout.do")
 		public ModelAndView logout(HttpSession session) {
 	    	session.invalidate();
-	        ModelAndView mav = new ModelAndView("redirect:/main/home.do");
+	        ModelAndView mav = new ModelAndView("redirect:/main/list.do");
 	        System.out.println("로그아웃!");
 	        return mav;
 	 	}

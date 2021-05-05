@@ -13,10 +13,10 @@
 			<div class="card-header bg-dark text-white"><h2 id="head_board">자유게시판</h2></div>
 			<div class="card-body" id="head_board2">
 				<div class="row justify-content-between">
-					<select class="form-control" name="setField" id="align_board">
-						<option value="postnum" name="setWord">최신순</option>
-						<option value="recommand" name="setWord">추천순</option>
-						<option value="readcnt" name="setWord">조회순</option>
+					<select class="form-control" name="" id="align_board">
+						<option value="postnum">최신순</option>
+						<option value="recommand">추천순</option>
+						<option value="readcnt">조회순</option>
 					</select>
 					<c:if test="${sessionScope.resultLogin != null}">
 						<input class="btn" id="write_btn" type="button" value="글쓰기" onClick="location.href='write.do'">
@@ -57,6 +57,9 @@
 						<td>${article.regdate}</td>
 						<td>${article.recommand}</td>
 						<td>${article.readcnt}</td>
+						<input type="hidden" value="${article.id}">
+						<input type="hidden" value="${article.boardnum}">
+						<input type="hidden" value="${article.best}">
 					</tr>
 				</c:forEach>
 				</tbody>	
@@ -69,18 +72,18 @@
 		</ul>
 		
 		<!-- 검색 -->
-			<form class="col-sm-6 col-sm-offset-3 offset-sm-3" name="search_free_board" action="list.do" onsubmit="return searchCheck()">
-				<div class="input-group">
-					<select class="form-control col-3 offset-sm-1" name="keyField" id="search_board">
-						<option value="title">제목</option>
-						<option value="nickname">작성자</option>
-						<option value="content">내용</option>
-						<option value="all">전체</option>
-					</select>
-					<input class="form-control col-5" type="text" size="15" name="keyWord" id="search_text">
-					<input class="btn form-control col-2" id="search_btn" type="submit" value="검색">
-				</div>
-			</form>
+		<form class="col-sm-6 col-sm-offset-3 offset-sm-3" name="search" action="list.do" method="get" onsubmit="return searchCheck()">
+			<div class="input-group">
+				<select class="form-control col-3 offset-sm-1" name="keyField" id="search_board">
+					<option value="title">제목</option>
+					<option value="nickname">작성자</option>
+					<option value="content">내용</option>
+					<option value="all">전체</option>
+				</select>
+				<input class="form-control col-5" type="text" size="15" name="keyWord" id="search_text">
+				<input class="btn form-control col-2"  type="submit"  id="search_btn" value="검색">
+			</div>
+		</form>
 	</div>
 </div>
 </body>

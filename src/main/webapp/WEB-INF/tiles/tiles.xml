@@ -35,10 +35,5 @@
    		<put-attribute name="title" value="글수정"/>
    		<put-attribute name="body" value="/WEB-INF/views/board/boardUpdate.jsp" />
    	</definition>
-   	
-   	<definition name="boardDelete" extends="mainpage">
-   		<put-attribute name="title" value="글수정"/>
-   		<put-attribute name="body" value="/WEB-INF/views/board/boardDelete.jsp" />
-   	</definition>
   
 </tiles-definitions>

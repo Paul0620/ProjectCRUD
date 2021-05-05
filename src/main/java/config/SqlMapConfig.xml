@@ -12,6 +12,7 @@
 	<!-- DTO클래스 별칭부여 -->
 	<typeAliases>
 	    <typeAlias alias="BoardCommand" type="com.board.command.BoardCommand"/>
+	    <typeAlias alias="CommentCommand" type="com.board.command.CommentCommand"/>
 	    <typeAlias alias="FileCommand" type="com.board.command.FileCommand"/>
 	    <typeAlias alias="MemberCommand" type="com.member.command.MemberCommand"/>	    
 	    <typeAlias alias="LoginCommand" type="com.member.command.LoginCommand"/>

@@ -5,8 +5,7 @@
     
 <mapper namespace="board">  
  	
-<!--  1.모든 필드를 검색  2.번호 메기기 3.보여줄 필드
-	   || 문자 결합으로 인해서 ${}가 아닌 #{}으로 입력, xml에서는 관계연산자(>, <을 인식하지 못해서 인식시켜줘야함) -->
+<!--  1.모든 필드를 검색  2.번호 메기기 3.보여줄 필드 -->
 <select  id="selectList"  parameterType="map"  resultType="BoardCommand"  >
     select postnum,id,boardnum,type,nickname,title,content,regdate,readcnt,recommand,best
             from ( select a.*, rownum rnum
@@ -32,7 +31,7 @@
 </select>
  
 
-<!-- 2.검색어에 해당하는 총 레코드 수 구하기 java.lang.Integer or Integer or int -->
+<!-- 검색어에 해당하는 총 레코드 수 구하기 -->
 <select id="totalCount" parameterType="map" resultType="Integer">
     select count(*) from post_tb
         <where>
@@ -54,66 +53,83 @@
  </select>
  			
  			
- <!-- 3.최대값구하기(java.lang.Integer (Integer, int) -->
+ <!-- 최대값구하기 -->
  <select id="getNewPostnum" resultType="int" >
     select max(postnum) from post_tb
  </select>
  
  
- <!-- 4.글쓰기 (com.board.domain.BoardCommand) resultType(x) -->
+ <!-- 조회순 높은순으로 정렬 -->
+ <select id="listSet" parameterType="map" resultType="int">
+ 	select * from post_tb order by 
+        <where>
+            <if test="setWord!=null and setField=='readcnt'">
+                 #{setField} desc
+            </if>
+            <if test="setWord!=null and setField=='recommand'">
+                 #{setField} desc
+            </if>
+            <if test="setWord!=null and setField=='postnum'">
+                 #{setField}
+            </if>
+        </where>
+ </select>
+ 
+ 
+ <!-- 글쓰기 -->
  <insert id="insertPost" parameterType="BoardCommand">
      insert into post_tb(postnum,id,boardnum,type,nickname,title,content,regdate,readcnt,recommand,best)
      values(#{postnum},#{id},#{boardnum},#{type},#{nickname},#{title},#{content},sysdate,0,0,0) 
-     
  </insert>			
  
  
- <!-- 5.글상세보기(레코드 한개 출력)  -->
+ <!-- 글상세보기(레코드 한개 출력)  -->
  <select id="selectPost" parameterType="Integer" resultType="BoardCommand">
     select * from post_tb where postnum=#{postnum}
  </select>
  
  
- <!-- 6.조회수 증가 -->
+ <!-- 조회수 증가 -->
  <update id="readcntUp" parameterType="Integer">
     update post_tb set readcnt=readcnt+1 where postnum=#{postnum}
  </update>
  
  
- <!-- 7.글수정하기 
- 		namespace="Board" -> 메서드에서 호출할 때 사용
- 		형식)네임스페이스명.id값을 부여
- -->
+ <!-- 글수정하기 -->
  <update id="updatePost" parameterType="BoardCommand">
  	update post_tb set title=#{title},content=#{content}
  	where postnum=#{postnum}
  </update>
  
  
- <!-- 8.글삭제하기 -->
+ <!-- 글삭제하기 -->
  <delete id="deletePost" parameterType="Integer">
  	delete from post_tb where postnum=#{postnum}
  </delete>
  
- 
- <!-- 9.조회수 높은순으로 정렬  -->
- <select id="listSet" parameterType="map" resultType="int">
- 	select * from post_tb order by readcnt desc
- 	
- 	 select * from post_tb order by 
-        <where>
-            <if test="setWord!=null and setField=='readcnt'">
-                 readcnt desc
-            </if>
-            <if test="setWord!=null and setField=='recommand'">
-                 recommand desc
-            </if>
-            <if test="setWord!=null and setField=='postnum'">
-                 postnum
-            </if>
-        </where>
- </select>
-		
+<!-- 댓글================================================== -->
+<!-- 댓글목록 -->
+<select id="listComment" resultType="CommentCommand">
+	select * from comment_tb where postnum=#{postnum}	
+</select>
+
+<!-- 댓글작성 -->
+<insert id="insertComment" parameterType="CommentCommand">
+	insert into comment_tb(commentnum,postnum,id,nickname,content,regdate,good,best)
+	values(#{commentnum},#{postnum},#{id},#{nickname},#{content},sysdate,0,0)
+</insert>
+
+<!-- 댓글수정 -->
+<update id="updateComment" parameterType="CommentCommand">
+	update comment_tb set content=#{content}
+	where commentnum=#{commentnum}
+</update>
+
+<!-- 댓글삭제 -->
+<delete id="deleteComment" parameterType="Integer">
+	delete from comment_tb where commentnum=#{commentnum}
+</delete>
+
 </mapper>
 
 

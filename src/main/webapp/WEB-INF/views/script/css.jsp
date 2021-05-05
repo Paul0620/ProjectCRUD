@@ -8,3 +8,5 @@
 	<link rel="stylesheet" href="../css/board.css">
 	<!-- 글쓰기 에디터 CSS 추가 -->
 	<link rel="stylesheet" href="../css/summernote-lite.css">
+	<!-- 댓글 CSS 추가 -->
+	<link rel="stylesheet" href="../css/comment.css">

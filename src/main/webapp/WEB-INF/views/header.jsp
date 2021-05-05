@@ -20,7 +20,7 @@
 	<div class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
 		<div class="container"> <!-- 이중 컨테이너 가능한지? -->
 			<!-- 사이트 타이틀 -->
-			<a class="navbar-brand" onClick="location.href='home.do'">YOEGIMOYEO</a>
+			<a class="navbar-brand" onClick="location.href='list.do'">YOEGIMOYEO</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-ex1-collapse">
 				<span class="navbar-toggler-icon"></span>
 			</button>

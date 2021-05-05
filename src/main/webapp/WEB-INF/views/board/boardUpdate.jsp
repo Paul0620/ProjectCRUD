@@ -33,10 +33,8 @@
 		<input type="hidden" id="boardnum" name="boardnum" value="6">
 		<div class="table table-striped">
 			<tbody>
-				<!-- 게시물 정보 가져오기 -->
+				<!-- 게시물 번호 가져오기 -->
 				<input type="hidden" id="postnum" name="postnum" value="${command.postnum}">
-				<input type="hidden" id="id" name="id" value="${command.id}">
-				<input type="hidden" id="nickname" name="nickname" value="${command.nickname}">
 				<!-- 게시글 작성화면 -->
 				<tr>
 					<td>

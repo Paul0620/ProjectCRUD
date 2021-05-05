@@ -7,6 +7,7 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import com.board.command.BoardCommand;
+import com.board.command.CommentCommand;
 
 @Repository
 public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDao {
@@ -32,6 +33,13 @@ public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDao {
 		int newPostnum=(Integer)getSqlSession().selectOne("getNewPostnum");
 		System.out.println("getNewPostnum()의 newPostnum -> "+newPostnum);
 		return newPostnum;
+	}
+	
+	//조회순, 추천순 정렬 //아직 못함=======================
+	public List<BoardCommand> listset(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		List<BoardCommand> list=getSqlSession().selectList("listSet",map);
+		return list;
 	}
 	
 	//게시판에 글쓰기
@@ -61,17 +69,38 @@ public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDao {
 	}
 	
 	//글삭제하기
-	//1.sql구문확인(mapper파일) -> 2.메서드와 매개변수확인
+	//1.sql구문확인(mapper파일) -> 2.aptjemdhk aoroqustnghkrdls
 	public void deletePost(Integer postnum) {
 		// TODO Auto-generated method stub
 		getSqlSession().delete("deletePost",postnum);
 		System.out.println("게시물번호 넘기기 -> "+postnum);
 	}
 	
-	//조회순, 추천순 정렬
-	public List<BoardCommand> listset(Map<String, Object> map) {
+	//댓글====================================================================
+	//댓글읽기
+	public List<CommentCommand> listComment(int postnum){
 		// TODO Auto-generated method stub
-		List<BoardCommand> list=getSqlSession().selectList("listSet",map);
-		return list;
+		return getSqlSession().selectList("listComment",postnum);
+	}
+	
+	//댓글작성
+	@Override
+	public void insertComment(CommentCommand comment) {
+		// TODO Auto-generated method stub
+		getSqlSession().insert("insertComment",comment);
+	}
+	
+	//댓글수정
+	@Override
+	public void updateComment(CommentCommand comment) {
+		// TODO Auto-generated method stub
+		getSqlSession().update("updateComment",comment);
+	}
+	
+	//댓글삭제
+	@Override
+	public void deleteComment(Integer commentnum) {
+		// TODO Auto-generated method stub
+		getSqlSession().delete("deleteComment",commentnum);
 	}
 }

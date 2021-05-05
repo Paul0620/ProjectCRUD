@@ -110,16 +110,60 @@ label {
 	margin-bottom:15px;
 }
 
-#upload {
-	
-}
-
 #submit_write {
+	margin-top: 10px;
     padding-left: 80px !important;
 }
 
 #upload {
 	margin-top:5px !important;
+}
+
+/* 파일첨부 박스 디자인 */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* input file type */
+.input-file {
+  display: inline-block;
+}
+
+.input-file [type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0 none;
+}
+.input-file .file-label {
+  display: inline-block;
+  min-width: 53px;
+  height: 27px;
+  line-height: 24px;
+  padding: 0 10px;
+  border-radius: 0.200rem;
+  font-size: 13px;
+  background-color: #343a40;
+  color: #fff;
+  text-align: center;
+}
+.input-file .file-name {
+  width: 300px;
+  background: #f5f5f5;
+  height: 27px;
+  line-height: 26px;
+  text-indent: 5px;
+  border: 1px solid #bbb;
+}
+
+/* 접근성 탭 포커스 스타일 */
+.file-focus {
+  outline: 1px dotted #d2310e;
 }
 
 /* 작성 후 화면 ==================================================================*/
@@ -140,8 +184,9 @@ label {
 	height: 149px !important;
 }
 
-#message {
+#message, #message2 {
 	color: black !important;
+	text-decoration:none !important;
 }
 
 /* 게시글 내용박스 설정 */

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.board.command.BoardCommand;
+import com.board.command.CommentCommand;
 
 public interface BoardDao {
 		
@@ -15,6 +16,9 @@ public interface BoardDao {
 		
 		//최대값 구하기
 		public int getNewPostnum();
+		
+		//조회순, 추천순 정렬(필요여부 아직 모름 나중에 구현)  //아직 못함=======================
+		public List<BoardCommand> listset(Map<String,Object> map);
 		
 		//게시판에 글쓰기
 		public void insertPost(BoardCommand post);
@@ -31,6 +35,18 @@ public interface BoardDao {
 		//글 삭제하기
 		public void deletePost(Integer postnum);
 		
-		//조회순, 추천순 정렬(필요여부 아직 모름 나중에 구현)
-		public List<BoardCommand> listset(Map<String,Object> map);
+		//댓글=========================================================
+		
+		//댓글읽기
+		public List<CommentCommand> listComment(int postnum);
+		
+		//댓글작성
+		public void insertComment(CommentCommand comment);
+
+		//댓글수정
+		public void updateComment(CommentCommand comment);
+		
+		//댓글삭제
+		public void deleteComment(Integer commentnum);
+		
 }

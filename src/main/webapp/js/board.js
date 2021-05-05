@@ -1,21 +1,49 @@
-/**
- * 게시판 js 
- */
-/* 게시글 리스트=================================================== */
-$("#write_btn").on("click",function(){
-	if(sessionScope.resultLogin == ""){
-		alert("로그인을 해주세요.");
-		location.href="login.do";
-	}
-});
+/* 게시판 리스트 */
 
-
-/* 게시글 검색 ====================================================*/
+/* 게시글 검색 */
 function searchCheck(){
-	if(document.search_free_board.keyWord.value=='' && !document.search_free_board.keyField.value=='all'){
+	if(document.search.keyWord.value=='' && !document.search.keyField.value=='all'){
 		alert('검색어를 입력하세요');
-		document.search_free_board.keyWord.focus();
+		document.search.keyWord.focus();
 		return false;
 	}
 }
 
+
+/* 파일업로드 */
+(function($){
+  
+  var $fileBox = null;
+  
+  $(function() {
+    init();
+  })
+  
+  function init() {
+    $fileBox = $('.input-file');
+    fileLoad();
+  }
+  
+  function fileLoad() {
+    $.each($fileBox, function(idx){
+      var $this = $fileBox.eq(idx),
+          $btnUpload = $this.find('[type="file"]'),
+          $label = $this.find('.file-label');
+      
+      $btnUpload.on('change', function() {
+        var $target = $(this),
+            fileName = $target.val(),
+            $fileText = $target.siblings('.file-name');
+        $fileText.val(fileName);
+      })
+      
+      $btnUpload.on('focusin focusout', function(e) {
+        e.type == 'focusin' ?
+          $label.addClass('file-focus') : $label.removeClass('file-focus');
+      })
+      
+    })
+  }
+  
+  
+})(jQuery);
