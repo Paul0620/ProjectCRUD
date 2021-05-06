@@ -24,16 +24,3 @@ $(document).ready(function(){
 	});
 });
 
-
-	/*$.ajax({
-			url : "loginCheck.do",
-			type : "post",
-			dataType : "json",
-			data : {userId, userPwd},
-			success : function(data){
-				if(data != null){
-					alert("로그인에 실패하였습니다.")
-					return false;
-				}
-			}
-		})*/

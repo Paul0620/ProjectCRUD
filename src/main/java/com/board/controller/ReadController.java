@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.board.command.BoardCommand;
 import com.board.command.CommentCommand;
@@ -37,19 +36,14 @@ public class ReadController {
 		//1.조회수 증가
 		boardDao.readcntUp(postnum); //int -> Integer(자동형변환이 일어나기때문) 그래서 경고줄이 안뜸
 		
-		//글내용 -> \r\n aaa \r\n -> 메서드로 구현(<br>로 변경) -> 요즘사용은 <pre></pre>
+		//게시글내용 -> \r\n aaa \r\n -> 메서드로 구현(<br>로 변경) -> 요즘사용은 <pre></pre>
 		model.addAttribute("board",boardDao.selectPost(board.getPostnum()));
-		//BoardCommand board=boardDao.selectPost(postnum);
 		board.setContent(StringUtil.parseBr(board.getContent()));
 		
-		//댓글 리스트 불러오기
-		List<CommentCommand> listComment=boardDao.listComment(postnum);
-		model.addAttribute("listComment",listComment);
-		//CommentCommand comment=(CommentCommand) boardDao.listComment(postnum);
-		//comment.setContent(StringUtil.parseBr(comment.getContent()));
-		
-		//1.이동할 페이지명, 2.매개변수가 전달할 키명, 3.전달할 값 -> boardView.jsp로 전달
-		//return new ModelAndView("boardRead","board",board);
+		//댓글목록
+		List<CommentCommand> commentList=boardDao.listComment(postnum);
+		model.addAttribute("commentList",commentList);
+
 		return "boardRead";
 	
 	}

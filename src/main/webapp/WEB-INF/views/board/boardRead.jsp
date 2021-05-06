@@ -43,7 +43,7 @@
 								<ul class="dropdown-menu" role="menu">
 									<li role="presentation"><a class="dropdown-item" role="menuitem" onclick="">쪽지보내기</a></li>
 								</ul>
-						</td>
+							</td>
 							<td>날짜 : ${board.regdate}</td>
 							<td></td><!-- 간격 맞추려고 공란으로 둔거 -->
 						</tr>
@@ -53,7 +53,9 @@
 							<c:if test="${sessionScope.resultLogin.id == board.id || sessionScope.resultLogin.id == 'admin'}">
 								<td id="read_setbtn">
 									<input type="button" class="btn btn-dark float-right" id="read_delete" value="삭제" onClick="del(${board.postnum})">
-									<input type="button" class="btn btn-dark float-right" id="read_update" value="수정" onClick="location.href='update.do?postnum=${board.postnum}'">
+									<c:if test="sessionScope.resultLogin.id == 'admin'}">
+										<input type="button" class="btn btn-dark float-right" id="read_update" value="수정" onClick="location.href='update.do?postnum=${board.postnum}'">
+									</c:if>
 								</td>
 							</c:if>
 						</tr>
@@ -73,46 +75,72 @@
 	</div>
 	
 	<!-- 댓글 -->
-	<!-- 댓글작성폼-->
 	<div class="col-sm-12" id="commentListForm"><br>
-		<div>
-			<form id="commentForm" name="commentForm" method="post">
-			<!-- 댓글정보 보내기 -->
-			<input type="hidden" id="postnum" name="postnum" value="${resultLogin.postnum}">
-		        <div>
-		            <div>
-		                <span><strong>Comments</strong></span> <span id="commentCnt"></span>
-		            </div>
-		            <div>
-		                <table class="table">                    
-		                    <tr>
-		                        <td id="commentTextForm">
-		                            <textarea class="form-control" rows="3" cols="30" id="content" name="content" placeholder="댓글을 입력하세요"></textarea>
-		                            <div>
-		                                <input type="submit" class="btn btn-dark float-right" value="등록" onClick="fn_comment('${board.postnum}')">
-		                            </div>
-		                        </td>
-		                    </tr>
-		                </table>
-		            </div>
-		        </div>  
-		    </form>
-	    </div>
+		<!-- 댓글작성폼-->
+		<c:if test="${sessionScope.resultLogin.id != null}">
+			<div>
+				<form id="commentForm" name="commentForm" method="post">
+				<!-- 로그인 계정 정보 넘기기 -->
+				<input type="hidden" id="id" name="id" value="${sessionScope.resultLogin.id}">
+				<input type="hidden" id="nickname" name="nickname" value="${sessionScope.resultLogin.nickname}">
+			        <div>
+			            <div>
+			                <span><strong>Comments</strong></span> <span id="commentCnt"></span>
+			            </div>
+			            <div>
+			                <table class="table">                    
+			                    <tr>
+			                        <td id="commentTextForm">
+			                            <textarea class="form-control" rows="3" cols="30" id="content" name="content" placeholder="댓글을 입력하세요"></textarea>
+			                            <div>
+			                                <input type="button" class="btn btn-dark float-right" id="commentSubmit" value="등록" onClick="fn_comment(${board.postnum})">
+			                            </div>
+			                        </td>
+			                    </tr>
+			                </table>
+			            </div>
+			        </div>
+			        <input type="hidden" id="postnum" name="postnum" value="${board.postnum}" />        
+			    </form>
+		    </div>
+	    </c:if>
+	    
 	    <!-- 댓글리스트폼 -->
-	    <!-- 댓글 -->
-		<div id="reply">
-		  <ol class="replyList">
-		    <c:forEach items="${listComment}" var="listComment">
-		      <li>
-		        <p>
-		        작성자 : ${listComment.nickname}<br />
-		        작성 날짜 : ${listComment.regdate}
-		        </p>
-		
-		        <p>${listComment.content}</p>
-		      </li>
-		    </c:forEach>   
-		  </ol>
+	    <div id="reply">
+			<ol class="commentList" id="commentList">
+				<c:forEach items="${commentList}" var="commentList">
+					<!-- 댓글리스트 -->
+					<li class="collapse multi-collapse-${commentList.id}-${commentList.commentnum} show">
+						<img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="commentProfile" alt="avata">
+						<a class="dropdown-toggle" href="#" data-toggle="dropdown" id="message2"><b>${commentList.nickname}</b></a>&nbsp;&nbsp;
+						작성일 : ${commentList.regdate}&nbsp;&nbsp;
+						<ul class="dropdown-menu" role="menu">
+							<li role="presentation"><a class="dropdown-item" role="menuitem" onclick="">쪽지보내기</a></li>
+						</ul>		
+						<c:if test="${sessionScope.resultLogin.id != null}">
+							<button class="far fa-thumbs-up commentLike" id="commentLike"></button>
+						</c:if>
+						<c:if test="${sessionScope.resultLogin.id == commentList.id || sessionScope.resultLogin.id == 'admin'}">
+							<button class="fas fa-edit commentUpdate" id="commentUpdate" data-toggle="collapse" data-target=".multi-collapse-${commentList.id}-${commentList.commentnum}"></button>
+							<button class="fas fa-trash-alt commentDelete" id="commentDelete" onClick="del(${commentList.postnum})"></button>
+						</c:if>
+						<p>
+						<p id="commentContent">${commentList.content}</p><hr>
+					</li>
+					<!-- 댓글 수정폼 -->
+					<form  class="collapse multi-collapse-${commentList.id}-${commentList.commentnum}" id="commentForm" method="post">
+						<!-- 아이디,게시글번호 -->
+						<input type="hidden" id="id" value="${commentList.id}">
+						<input type="hidden" id="commentnum" value="${commentList.commentnum}">
+						<!-- 작성자 정보 -->
+						<img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="commentProfile" alt="avata">
+						<b id="nickname" id="nickname">${commentList.nickname}</b>
+						<button type="button" class="far fa-check-square commentUpdateCheck" id="commentUpdateCheck"></button>
+						<button type="button" class="far fa-window-close commentCancel" id="commentCancel" onClick="cancel()"></button>
+						<textarea class="form-control" rows="3" cols="30" id="updateContent" name="updateContent">${commentList.content}</textarea>
+					</form>
+				</c:forEach>
+			</ol>
 		</div>
 	</div>
 	

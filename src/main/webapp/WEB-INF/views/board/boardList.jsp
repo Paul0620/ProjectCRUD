@@ -10,7 +10,7 @@
 	<div class="col-sm" id="board_list">
 		<!-- 게시판 이름 및 게시판 정렬 링크 -->
 		<div class="card">
-			<div class="card-header bg-dark text-white"><h2 id="head_board">자유게시판</h2></div>
+			<div class="card-header bg-dark text-white" ><h2 id="head_board">자유게시판</h2></div>
 			<div class="card-body" id="head_board2">
 				<div class="row justify-content-between">
 					<select class="form-control" name="" id="align_board">
@@ -57,9 +57,9 @@
 						<td>${article.regdate}</td>
 						<td>${article.recommand}</td>
 						<td>${article.readcnt}</td>
-						<input type="hidden" value="${article.id}">
-						<input type="hidden" value="${article.boardnum}">
-						<input type="hidden" value="${article.best}">
+						<input type="hidden"  id="id" value="${article.id}">
+						<input type="hidden" id="boardnum" value="${article.boardnum}">
+						<input type="hidden" id="best" value="${article.best}">
 					</tr>
 				</c:forEach>
 				</tbody>	
