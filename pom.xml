@@ -183,7 +183,7 @@
   
 
   <build>
-    <finalName>CRUD2</finalName>
+    <finalName>CRUDFest</finalName>
 	<plugins>
 		<plugin>
 			<artifactId>maven-compiler-plugin</artifactId>

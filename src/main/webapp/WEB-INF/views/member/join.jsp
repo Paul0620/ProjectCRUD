@@ -25,7 +25,7 @@
 	<div class="container">
 			<div class="col-sm-6 col-sm-offset-3 offset-sm-3">
 				<div class="page-header">
-					<h1 class="text-center" onClick="location.href='home.do'">YOEGIMOYEO</h1>
+					<h1 class="text-center" onClick="location.href='list.do'">YOEGIMOYEO</h1>
 				</div>
 				<form action="join.do" method="post" name="joinInfo" role="form" id="join" enctype="multipart/form-data">
 					<!-- 아이디, 비밀번호, 닉네임 -->

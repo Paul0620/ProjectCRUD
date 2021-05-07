@@ -99,9 +99,9 @@ public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDao {
 	
 	//댓글삭제
 	@Override
-	public void deleteComment(CommentCommand comment) {
+	public void deleteComment(Integer commentnum) {
 		// TODO Auto-generated method stub
-		getSqlSession().delete("deleteComment",comment);
+		getSqlSession().delete("deleteComment",commentnum);
 	}
 	
 	//댓글조회(삭제,수정,좋아요)

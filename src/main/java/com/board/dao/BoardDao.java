@@ -47,7 +47,7 @@ public interface BoardDao {
 		public void updateComment(CommentCommand comment);
 		
 		//댓글삭제
-		public void deleteComment(CommentCommand comment);
+		public void deleteComment(Integer commentnum);
 		
 		//댓글조회(삭제,수정,좋아요)
 		public CommentCommand selectComment(int commentnum);

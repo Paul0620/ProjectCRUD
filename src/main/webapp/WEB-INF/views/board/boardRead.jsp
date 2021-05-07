@@ -53,7 +53,7 @@
 							<c:if test="${sessionScope.resultLogin.id == board.id || sessionScope.resultLogin.id == 'admin'}">
 								<td id="read_setbtn">
 									<input type="button" class="btn btn-dark float-right" id="read_delete" value="삭제" onClick="del(${board.postnum})">
-									<c:if test="sessionScope.resultLogin.id == 'admin'}">
+									<c:if test="${sessionScope.resultLogin.id != 'admin'}">
 										<input type="button" class="btn btn-dark float-right" id="read_update" value="수정" onClick="location.href='update.do?postnum=${board.postnum}'">
 									</c:if>
 								</td>
@@ -100,29 +100,34 @@
 			                </table>
 			            </div>
 			        </div>
-			        <input type="hidden" id="postnum" name="postnum" value="${board.postnum}" />        
+			        <input type="hidden" id="postnum" name="postnum" value="${board.postnum}" /> 
 			    </form>
 		    </div>
 	    </c:if>
 	    
 	    <!-- 댓글리스트폼 -->
-	    <div id="reply">
+	    <div id="commentForm">
 			<ol class="commentList" id="commentList">
 				<c:forEach items="${commentList}" var="commentList">
 					<!-- 댓글리스트 -->
 					<li class="collapse multi-collapse-${commentList.id}-${commentList.commentnum} show">
 						<img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="commentProfile" alt="avata">
 						<a class="dropdown-toggle" href="#" data-toggle="dropdown" id="message2"><b>${commentList.nickname}</b></a>&nbsp;&nbsp;
-						작성일 : ${commentList.regdate}&nbsp;&nbsp;
 						<ul class="dropdown-menu" role="menu">
-							<li role="presentation"><a class="dropdown-item" role="menuitem" onclick="">쪽지보내기</a></li>
+							<li role="presentation"><a class="dropdown-item" role="menuitem">쪽지보내기</a></li>
 						</ul>		
+						작성일 : ${commentList.regdate}&nbsp;&nbsp;
+						<!-- 로그인한 유저가 아니라면 좋아요 버튼을 누를 수 없게 -->
 						<c:if test="${sessionScope.resultLogin.id != null}">
 							<button class="far fa-thumbs-up commentLike" id="commentLike"></button>
 						</c:if>
+						<!-- 수정, 삭제버튼을 관리자 또는 작성자만 볼 수 있게 -->
 						<c:if test="${sessionScope.resultLogin.id == commentList.id || sessionScope.resultLogin.id == 'admin'}">
+							<c:if test="${sessionScope.resultLogin.id!='admin' }">
 							<button class="fas fa-edit commentUpdate" id="commentUpdate" data-toggle="collapse" data-target=".multi-collapse-${commentList.id}-${commentList.commentnum}"></button>
-							<button class="fas fa-trash-alt commentDelete" id="commentDelete" onClick="del(${commentList.postnum})"></button>
+							</c:if>
+							<button type="button" class="fas fa-trash-alt commentDelete" id="commentDelete" onClick="del(${commentList.commentnum})"></button>
+							<input type="hidden" id="commentnum" value="${commentList.commentnum}">
 						</c:if>
 						<p>
 						<p id="commentContent">${commentList.content}</p><hr>

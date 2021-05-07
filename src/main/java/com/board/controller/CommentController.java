@@ -10,14 +10,15 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.board.command.BoardCommand;
 import com.board.command.CommentCommand;
 import com.board.dao.BoardDao;
 import com.member.command.MemberCommand;
@@ -68,35 +69,55 @@ public class CommentController {
 		return result;
 
 	}
-	
+	/*
+	@RequestMapping(value = "/updateReply", method = {RequestMethod.GET, RequestMethod.POST})
+
+	public Map<String, Object> updateReply(@RequestBody ReplyVO replyVO) throws Exception {
+		
+		Map<String, Object> result = new HashMap<>();
+		try {
+		boardService.updateReply(replyVO);
+		result.put("status", "OK");
+		
+		} catch (Exception e) {
+		e.printStackTrace();
+		result.put("status", "False");
+		}
+		return result;
+	}
+	*/
 	
 	//댓글삭제
-	@RequestMapping(value="/main/cDelete.do", method=RequestMethod.GET) 
-	public String deleteComment(@ModelAttribute("command") CommentCommand comment, Model model) {
-		//src/main/java폴어 log4j.xml 복사 -> 편집
-		if(log.isDebugEnabled()) { //디버그 모드인지 체크(출력상태)
-			log.debug("CommentCommand -> "+comment); //command.toString()
-		}
-		
-		model.addAttribute("selectComment",boardDao.selectComment(comment.getCommentnum()));		
-		
-		return "main/read.do";
-		
-	}
-	
-	
-	@RequestMapping(value="/main/cDelete.do", method=RequestMethod.POST) 
+	@RequestMapping(value="/main/cDelete.do") 
 	public String deleteComment(@ModelAttribute("command") CommentCommand comment, RedirectAttributes rttr) {
-		//src/main/java폴어 log4j.xml 복사 -> 편집
-		if(log.isDebugEnabled()) { //디버그 모드인지 체크(출력상태)
-			log.debug("CommentCommand -> "+comment); //command.toString()
+		
+		if(log.isDebugEnabled()) {
+			log.debug("CommentCommand -> "+comment); 
 		}
 		
-		 boardDao.deleteComment(comment);
-		 rttr.addAttribute("postnum",comment.getPostnum());
+		 boardDao.deleteComment(comment.getCommentnum());
+		 
+		 BoardCommand board=new BoardCommand();
+		 rttr.addAttribute("postnum",board.getPostnum());
 		
 		//return "redirect:/요청명령어" -> "이동할 페이지명(boardList.jsp)";
 		return "redirect:/main/read.do";
 	}
+	
+	/*
+	@RequestMapping(value = "/main/cDelete.do")
+	public Map<String, Object> deleteComment(@RequestParam("commentnum") int commentnum) throws Exception {
+				
+		Map<String, Object> result = new HashMap<>();
+		try {
+			boardDao.deleteComment(commentnum);
+			result.put("status", "OK");
+		} catch (Exception e) {
+			e.printStackTrace();
+			result.put("status", "False");
+		}
+		return result;
+	}
+	*/
 	
 }
