@@ -58,11 +58,12 @@ public class CommentCommand {
 	public void setBest(int best) {
 		this.best = best;
 	}
-	
+
 	//toString()
 	@Override
 	public String toString() {
 		return "CommentCommand [commentnum="+commentnum+",postnum="+postnum+",id="+id+",nickname="+nickname+",content="+content
 				+",regdate="+regdate+",good="+good+",best="+best+"]";
 	}
+
 }

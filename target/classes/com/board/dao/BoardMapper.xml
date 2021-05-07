@@ -26,7 +26,7 @@
                             content like '%' || #{keyWord} || '%'
                      </if>
  					</where> 
- 					order by postnum desc ) a )
+ 					order by postnum desc ) a ) 
 	<![CDATA[where rnum >=#{start} AND rnum <=#{end}]]>
 </select>
  
@@ -107,11 +107,13 @@
  	delete from post_tb where postnum=#{postnum}
  </delete>
  
+ 
 <!-- 댓글================================================== -->
 <!-- 댓글목록 -->
 <select id="listComment" resultType="CommentCommand">
-	select * from comment_tb where postnum=#{postnum}	
+	select * from comment_tb where postnum=#{postnum} order by commentnum desc
 </select>
+
 
 <!-- 댓글작성 -->
 <insert id="insertComment" parameterType="CommentCommand">
@@ -119,16 +121,24 @@
 	values((select nvl(max(commentnum),0)+1 from comment_tb),#{postnum},#{id},#{nickname},#{content},sysdate,0,0)
 </insert>
 
+
 <!-- 댓글수정 -->
 <update id="updateComment" parameterType="CommentCommand">
 	update comment_tb set content=#{content}
 	where commentnum=#{commentnum}
 </update>
 
+
 <!-- 댓글삭제 -->
 <delete id="deleteComment" parameterType="Integer">
 	delete from comment_tb where commentnum=#{commentnum}
 </delete>
+
+
+<!-- 대상댓글 조회(수정,삭제,좋아요) -->
+<select id="selectComment" resultType="CommentCommand">
+	select * from comment_tb where commentnum=${commentnum}
+</select>
 
 </mapper>
 

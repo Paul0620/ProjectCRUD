@@ -90,7 +90,7 @@ public class BoardCommand {
 	//toString()
 	@Override
 	public String toString() {
-		return "BoardCommand [postnum="+postnum+",id="+id+",boarnum="+boardnum+",type="+type+",nickname="+nickname+",title="
+		return "BoardCommand [postnum="+postnum+",id="+id+",boardnum="+boardnum+",type="+type+",nickname="+nickname+",title="
 				+title+",content="+content+",regdate="+regdate+",readcnt="+readcnt+",recommand="+recommand+",best="+best+"]";
 	}
 	

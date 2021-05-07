@@ -60,7 +60,7 @@ public class ListController {
 		List<BoardCommand> list=null;
 		if(count > 0) {
 			list=boardtDao.list(map); //keyField, keyWord, Start, end값이 각각 분리됨
-			System.out.println("ListController의 list -> "+list);
+			//System.out.println("ListController의 list -> "+list);
 		} else {
 			list=Collections.emptyList(); //0적용
 		}

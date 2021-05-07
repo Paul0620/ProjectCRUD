@@ -20,7 +20,7 @@
 	</div>
 	<!-- 게시글 작성칸 -->
 	<form method="post" action="write.do" enctype="multipart/form-data">
-		<!-- 게시판 정보 -->
+		<!-- 게시판,게시글 정보 -->
 		<input type="hidden" id="boardnum" name="boardnum" value="6">
 		<!-- 로그인 계정 정보 넘기기 -->
 		<input type="hidden" id="id" name="id" value="${sessionScope.resultLogin.id}">
@@ -54,6 +54,7 @@
 							
 						</textarea>
 					</td>
+					<!-- 파일 업로드 -->
 					<td>
 						<div class="input-file">
 							<input type="text" readonly="readonly" class="file-name" />
@@ -61,7 +62,7 @@
 							<input type="file" multiple="multiple" name="" id="upload" class="file-upload" />
 						</div>
 					</td>
-				</tr><br>
+				</tr>
 			</tbody>
 			<div class="col-sm-4 col-sm-offset-3 offset-sm-4" id="submit_write">
 				<input class="btn btn-dark " type="reset"  id="reset" value="초기화" />

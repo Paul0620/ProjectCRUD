@@ -1,15 +1,30 @@
 /* 댓글 css */
 
-#commentListForm{
-	
+#commentListForm{	
     padding-left: 0px;
     padding-right: 0px;
-    
 }
 
-#commentTextForm{
-	
-    padding-left: 0px;
+#commentTextForm{	
+	padding-left: 0px;
     padding-right: 0px;
-	
+}
+
+#commentList{
+    list-style: none;
+}
+
+#commentUpdate, #commentDelete, #commentLike, #commentUpdateCheck, #commentCancel{
+	border-width:0px;
+	background-color:white;
+}
+
+.commentProfile{
+	width:35px;
+	height:35px !important;
+}
+
+#updateContent{
+	 margin-top: 5px;
+    margin-bottom: 10px;
 }
