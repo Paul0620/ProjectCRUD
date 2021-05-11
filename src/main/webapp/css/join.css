@@ -52,12 +52,11 @@ img {
 	margin-bottom:20px;
 }
 
-
 /* 회원가입 버튼 설정 */
 #check-btn {
 	line-height:2.0;
 	font-weight:bold;
-	font-size:25px;
+	font-size:20px;
 }
 
 /* 타이틀 글자 진하게 */
@@ -80,33 +79,12 @@ label {
 }
 
 
-/* joinPro 회원가입확인창 ============================================================== */
-/* 로그인확인 폼 위치 설정 */
-#joinPro {
-	margin-top:250px;
-}
-
-
-#ment {
+/* memberRead 회원정보창 ============================================================== */
+/* 회원수정,취소버튼 설정 */
+#join_btn {
 	text-align:center;
-	margin-top:50px;
-	margin-bottom:30px;
 }
 
-
-/* 로그인,회원가입버튼 설정 */
-#join_login_btn {
-	color: #f8f9fa;
-	background-color: #343a40;
-	font-size:20px;
-	font-weight:bold;
-	line-height:2.0;
-}
-
-#join_login_btn:hover {
-	color: #343a40;
-	background: #f8f9fa;
-}
 
 
 

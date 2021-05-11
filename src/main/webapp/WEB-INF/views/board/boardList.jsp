@@ -43,6 +43,7 @@
 				
 				<!-- 작성게시물 목록 출력부분 -->
 				<tbody class="text-center">
+				<!-- 게시글이 없을시 -->
 				<c:if test="${count==0}">
 					<tr>
 						<td colspan="7" align="center">등록된 게시물이 없습니다.</td>

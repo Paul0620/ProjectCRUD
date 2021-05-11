@@ -1,0 +1,37 @@
+/* 모든 페이지 설정 */
+@import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url(https://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+.navbar-brand, h1, h2, h3, h4, h5 { font-family:'Jeju Gothic' }
+body { 
+	font-family:'Nanum Gothic';  	
+}
+
+.wrap {
+	margin-top: 80px;
+	margin-bottom: 80px;
+}
+
+.page-header {
+    margin-bottom: 50px;
+}
+
+/* 페이지 헤더 폰트 설정 */
+h1 {
+	font-weight:bold;
+	font-size:50px;
+}
+
+/* 회원가입 페이지 타이틀 중앙 정리 */
+.homepage {
+	margin-bottom: 30px;
+	cursor:pointer;
+}
+
+.col-sm-10 {
+	margin:auto;
+}
+
+.text-dark {
+	text-decoration:none !important
+}

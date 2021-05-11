@@ -11,9 +11,7 @@
   <select id="getMemberList"  parameterType="java.util.Map" resultType="MemberCommand">
       select * from (select a.*, rownum rnum
       	from (select  * from user_tb order by regdate desc) a )
-      <![CDATA[
-       where rnum>=#{start} and rnum<=#{end}
-         ]]>       
+      <![CDATA[where rnum>=#{start} and rnum<=#{end}]]>       
   </select>
   
   <!-- 총레코드수 -->
@@ -22,8 +20,7 @@
   </select>
   
   <!-- 회원가입 -->
-  <insert id="insertMember" 
-             parameterType="MemberCommand">
+  <insert id="insertMember" parameterType="MemberCommand">
     insert all into user_tb(id,pwd,nickname,name,email,gender,phone,job,zipNo,roadAddrPart1,roadAddrPart2,addrDetail,regdate)
     values(#{id},#{pwd},#{nickname},#{name},#{email},#{gender},#{phone},#{job},#{zipNo},#{roadAddrPart1},#{roadAddrPart2},#{addrDetail},sysdate)
     into login_tb(id,pwd,nickname) values(#{id},#{pwd},#{nickname})
@@ -46,14 +43,21 @@
   </select>
   
   <!-- 회원정보보기 -->
-  <select id="getMember" resultType="MemberCommand"
+  <select id="selectMember" resultType="MemberCommand"
              parameterType="String">
     select * from user_tb where id=#{id}
   </select>
   
   <!-- 회원정보수정하기 -->
   <update id="updateMember" parameterType="MemberCommand">
-    update user_tb set passwd=#{passwd},name=#{name}  where id=#{id}
+  	update user_tb set pwd=#{pwd},nickname=#{nickname},name=#{name},email=#{email},gender=#{gender},
+    phone=#{phone},job=#{job},zipNo=#{zipNo},roadAddrPart1=#{roadAddrPart1},roadAddrPart2=#{roadAddrPart2},
+    addrDetail=#{addrDetail} where id=#{id}
+  </update>
+  
+  <!-- 로그인수정하기 -->
+  <update id="updateLogin" parameterType="LoginCommand">
+     update login_tb set pwd=#{pwd},nickname=#{nickname} where id=#{id}
   </update>
   
   <!-- 회원정보 삭제하기 -->

@@ -28,17 +28,19 @@ public interface MemberDao {
 	public int pwdCheck(MemberCommand member);
 	
 	//회원정보보기
-	public MemberCommand getMember(String id);
+	public MemberCommand selectMember(String id);
 	
 	//회원정보수정
 	public void updateMember(MemberCommand member);
 	
+	//로그인정보수정
+	public void updateLogin(LoginCommand login);
+	
 	//회원탈퇴
-	public void deleteMember(String id, String pwd);
+	public void deleteMember(String id);
 	
 	//로그인
 	public MemberCommand loginMember(MemberCommand member);
-	
 	
 }
 

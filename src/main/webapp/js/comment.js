@@ -83,7 +83,7 @@ function fn_deleteComment(commentnum){
 function del(commentnum) {
 	var chk = confirm("정말 삭제하시겠습니까?");
 	if (chk) {
-		location.href='delete.do?commentnum='+commentnum;
+		location.href='cDelete.do?commentnum='+commentnum;
 	}
 }
 

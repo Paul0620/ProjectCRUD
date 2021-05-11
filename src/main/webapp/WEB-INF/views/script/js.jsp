@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!-- 제이쿼리 JS 추가 -->
-	<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
-	<!-- 부트스트랩 JS 추가 -->
+    <!-- 제이쿼리 JS 추가 -->
+	<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>	
+    <!-- 부트스트랩 JS 추가 -->
 	<script type="text/javascript" src="../js/bootstrap.bundle.min.js"></script>
 	<!-- main JS 추가 -->
 	<script type="text/javascript" src="../js/main.js"></script>

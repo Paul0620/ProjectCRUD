@@ -18,7 +18,6 @@
 	<!-- join CSS 추가 -->
 	<link rel="stylesheet" href="../css/join.css">
 </head>
-
 <body>
 	<div id="wrap">
 
@@ -118,8 +117,8 @@
 					</div>
 
 					<!-- 가입버튼 -->
-					<div class="block4 row">
-						<input type="submit" class="btn btn-dark btn-lg col-sm-12" value="회원가입" id="check-btn">
+					<div class="block4" id="join_btn">
+						<input type="submit" class="btn btn-dark col-sm-8" value="회원가입" id="check-btn">
 					</div>
 				</form>
 			</div>

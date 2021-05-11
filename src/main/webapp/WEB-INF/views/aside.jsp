@@ -35,7 +35,7 @@
 		<div class="input-group bg-light"  id="btns">
 			<button type="button" class="btn col-sm-4" id="message"><i class="fas fa-comments"></i></button>
 			<button type="button" class="btn col-sm-4" id="mail"><i class="fas fa-envelope"></i></button>
-			<button type="button" class="btn col-sm-4" id="admin" onclick=""><i class="fas fa-user-cog"></i></button>
+			<button type="button" class="btn col-sm-4" id="admin" onClick="location.href='memberRead.do?id=${sessionScope.resultLogin.id}'"><i class="fas fa-user-cog"></i></button>
 		</div>
 		<!-- 활동기록(미구현) -->
 		<ul class="list-group" id="my_active">
@@ -48,7 +48,7 @@
 		<!-- 관리자가 로그인했을때만 보이는 회원리스트 버튼 -->
 		<c:if test="${sessionScope.resultLogin.id == 'admin'}">
 			<div class="card my">
-				<input type="button" class="btn"  id="memberView_btn" value="회원리스트" onclick="location.href='userInfo.do'">
+				<input type="button" class="btn"  id="memberView_btn" value="회원리스트" onclick="location.href='memberList.do'">
 			</div>
 		</c:if>
 	</c:if>	

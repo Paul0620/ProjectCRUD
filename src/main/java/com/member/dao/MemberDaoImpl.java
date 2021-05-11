@@ -15,7 +15,7 @@ public class MemberDaoImpl extends SqlSessionDaoSupport implements MemberDao {
 	//회원 목록보기(페이징 처리)
 	public List<MemberCommand> getMemberList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		List<MemberCommand> list=getSqlSession().selectOne("getMemberList",map);
+		List<MemberCommand> list=getSqlSession().selectList("getMemberList",map);
 		return list;
 	}
 
@@ -50,9 +50,9 @@ public class MemberDaoImpl extends SqlSessionDaoSupport implements MemberDao {
 	}
 	
 	//회원정보보기
-	public MemberCommand getMember(String id) {
+	public MemberCommand selectMember(String id) {
 		// TODO Auto-generated method stub
-		MemberCommand member=getSqlSession().selectOne("getMember",id);
+		MemberCommand member=getSqlSession().selectOne("selectMember",id);
 		return member;
 	}
 
@@ -62,8 +62,14 @@ public class MemberDaoImpl extends SqlSessionDaoSupport implements MemberDao {
 		getSqlSession().update("updateMember",member);
 	}
 
+	//로그인정보수정
+	public void updateLogin(LoginCommand login) {
+		// TODO Auto-generated method stub
+		getSqlSession().update("updateLogin",login);
+	}
+	
 	//회원탈퇴
-	public void deleteMember(String id, String pwd) {
+	public void deleteMember(String id) {
 		// TODO Auto-generated method stub
 		getSqlSession().delete("deleteMember",id);
 	}
