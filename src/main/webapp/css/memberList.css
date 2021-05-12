@@ -2,16 +2,21 @@
 @import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css);
 @import url(https://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
-.navbar-brand, h1, h2, h3, h4, h5 { font-family:'Jeju Gothic' }
+.navbar-brand, h1, h2, h3, h4, h5 { 
+	font-family:'Jeju Gothic' 
+}
+
 body { 
 	font-family:'Nanum Gothic';  	
 }
 
+/* 회원목록 폼 설정 */
 .wrap {
 	margin-top: 80px;
 	margin-bottom: 80px;
 }
 
+/* 페이지 헤더 설정 */
 .page-header {
     margin-bottom: 50px;
 }
@@ -22,7 +27,7 @@ h1 {
 	font-size:50px;
 }
 
-/* 회원가입 페이지 타이틀 중앙 정리 */
+/* 회원목록 제목,목록 중앙 정리 */
 .homepage {
 	margin-bottom: 30px;
 	cursor:pointer;
@@ -32,6 +37,7 @@ h1 {
 	margin:auto;
 }
 
+/* 링크부분 밑줄제거 */
 .text-dark {
 	text-decoration:none !important
 }

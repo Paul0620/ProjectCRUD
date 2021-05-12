@@ -1,6 +1,5 @@
 /* body(board) 폼설정 =============================================================*/
 /* 홈페이지 메인화면에서 보이는 크기 설정 */
-
 #body {
 	padding-right: 0px;
 	padding-left: 0px; 
@@ -11,6 +10,7 @@ h3 {
 	margin-top:6px;
 	margin-bottom:0px;
 }
+
 /* 게시판 간격 벌리기 */
 #board1 {
 	margin-bottom:30px;
@@ -23,6 +23,7 @@ h3 {
 	font-size:16px;
 
 }
+
 /* nav-link 클래스 설정 aside.css, main.css */
 .nav-link {
 	font-weight:bold;
@@ -98,7 +99,6 @@ h3 {
 	border-color:#444 !important;
 }
 
-
 /* 글쓰기화면 설정=============================================================== */
 /* 간격설정 */
 label {
@@ -125,7 +125,7 @@ label {
   padding: 0;
 }
 
-/* input file type */
+/* 첨부파일바 폼 설정 */
 .input-file {
   display: inline-block;
 }
@@ -140,6 +140,7 @@ label {
   clip: rect(0, 0, 0, 0);
   border: 0 none;
 }
+
 .input-file .file-label {
   display: inline-block;
   min-width: 53px;
@@ -152,6 +153,7 @@ label {
   color: #fff;
   text-align: center;
 }
+
 .input-file .file-name {
   width: 300px;
   background: #f5f5f5;

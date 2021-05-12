@@ -1,5 +1,5 @@
 /* 댓글 css */
-
+/* 댓글 폼 패딩 설정 */
 #commentListForm{	
     padding-left: 0px;
     padding-right: 0px;
@@ -10,6 +10,7 @@
     padding-right: 0px;
 }
 
+/* 댓글목록 폼 설정 */
 #commentList{
     list-style: none;
 }
@@ -25,6 +26,6 @@
 }
 
 #updateContent{
-	 margin-top: 5px;
+	margin-top: 5px;
     margin-bottom: 10px;
 }

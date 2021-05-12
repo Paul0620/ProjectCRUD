@@ -16,7 +16,6 @@ $(document).ready(function(){
 			$("#input_pwd").focus();
 			return false;
 		}
-		
 		//폼 내부의 데이터를 전송할 주소
 		document.loginCheck.action="loginCheck.do"
 		//제출

@@ -2,25 +2,26 @@
 @import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css);
 @import url(https://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
+.navbar-brand, h1, h2, h3, h4, h5 { 
+	font-family:'Jeju Gothic' 
+}
 
-.navbar-brand, h1, h2, h3, h4, h5 { font-family:'Jeju Gothic' }
 body { 
 	font-family:'Nanum Gothic';  	
 }
 
-
-/* join 회원가입 설정 ============================================================*/
-
+/* join 회원가입/수정 설정 ============================================================*/
+/* 전체 폼 위치 설정 */
 .container {
 	margin-top: 80px;
 	margin-bottom: 80px;
 }
 
+/* 헤더 폰트 설정 */
 h1 {
 	font-weight:bold;
 	font-size:50px;
 }
-
 
 /* 회원가입 페이지 타이틀 중앙 정리 */
 .page-header {
@@ -37,7 +38,6 @@ h1 {
 	padding-bottom:10px;
 }
 
-
 /* 프로필 사진 테이블 설정 */
 img {
 	width:220px;
@@ -45,7 +45,6 @@ img {
 	object-fit:contain;
 	margin-bottom:10px;
 }
-
 
 /* 주소입력창 간격조절 */
 #zipNo, #roadAddrPart1, #roadAddrPart2, #roadAddrPart3 {
@@ -74,13 +73,12 @@ label {
     vertical-align: middle;
     cursor: pointer;
 }
+
 #option1, #option2 {
 	margin-right:5px;	
 }
 
-
-/* memberRead 회원정보창 ============================================================== */
-/* 회원수정,취소버튼 설정 */
+/* 버튼 설정 */
 #join_btn {
 	text-align:center;
 }

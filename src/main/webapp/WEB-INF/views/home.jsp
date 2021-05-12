@@ -8,6 +8,7 @@
 	<tiles:insertAttribute name="js" />
 </head>
 <body>
+	<!-- tiles를 활용하여 페이지 레이아웃 처리 게시판 페이지들은 body에서 처리 -->
 	<!-- 헤더 -->
 	<div class="header">
 		<tiles:insertAttribute name="header" />

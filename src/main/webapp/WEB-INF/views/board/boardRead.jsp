@@ -1,10 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<title>게시글화면</title>
+<title>게시글 읽기화면</title>
 </head>
 <body>
 <div class="container">
@@ -16,12 +15,13 @@
 	<!-- 작성 후 게시글 화면 -->
 	<div class="table" id="read_table">
 		<div class="row">
-			<!-- 프로필 사진 -->
+			<!-- 프로필 사진(미구현) -->
 			<div class="col-sm-2" id="read_profile">
 				<tr>
 					<td><img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-thumbnail" alt="avatar" id="read_profile_img"></td>
 				</tr>
 			</div>
+			<!-- 작성자 정보, 게시글 정보 -->
 			<div class="col-sm-10" id="read2_profile">
 				<!-- 게시물 정보 가져오기 -->
 				<input type="hidden" id="postnum" name="postnum" value="${board.postnum}">
@@ -30,7 +30,7 @@
 				<table class="col-sm-12">
 					<thead class="text-center">
 						<tr>
-							<th id="read_title">${board.title}</td>
+							<th id="read_title">${board.title}</th>
 						</tr>
 					</thead>
 				</table>
@@ -67,14 +67,15 @@
 		<div class="card" id="read_content">
 			${board.content}
 		</div>
-		<!-- 파일다운로드를 위한 폼 -->
+		
+		<!-- 파일다운로드를 위한 폼(미구현) 
 		<div class="custom-file">
 			<form class="form-control" id="fileDown" method="post">
 			</form>
-		</div>
+		</div> -->
 	</div>
 	
-	<!-- 댓글 -->
+	<!-- 댓글(수정, 삭제 미구현) -->
 	<div class="col-sm-12" id="commentListForm"><br>
 		<!-- 댓글작성폼-->
 		<c:if test="${sessionScope.resultLogin.id != null}">
@@ -124,7 +125,7 @@
 						<!-- 수정, 삭제버튼을 관리자 또는 작성자만 볼 수 있게 -->
 						<c:if test="${sessionScope.resultLogin.id == commentList.id || sessionScope.resultLogin.id == 'admin'}">
 							<c:if test="${sessionScope.resultLogin.id!='admin' }">
-							<button class="fas fa-edit commentUpdate" id="commentUpdate" data-toggle="collapse" data-target=".multi-collapse-${commentList.id}-${commentList.commentnum}"></button>
+								<button class="fas fa-edit commentUpdate" id="commentUpdate" data-toggle="collapse" data-target=".multi-collapse-${commentList.id}-${commentList.commentnum}"></button>
 							</c:if>
 							<button type="button" class="fas fa-trash-alt commentDelete" id="commentDelete" onClick="del(${commentList.commentnum})"></button>
 							<input type="hidden" id="commentnum" value="${commentList.commentnum}">

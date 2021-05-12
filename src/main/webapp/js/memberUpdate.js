@@ -1,9 +1,6 @@
-/* 회원가입 검사 */
-
-$(document).ready(function(){
-			
-	$("#check-btn").on("click", function(){
-			
+/* 회원수정 검사 */
+$(document).ready(function(){	
+	$("#check-btn").on("click", function(){	
 		//닉네임
 		if($("#nickname").val()==""){
 			alert("닉네임을 입력해주세요.");
@@ -34,6 +31,7 @@ $(document).ready(function(){
 			return false;
 		}
 		
+		//비밀번호 입력양식 체크
 		var pw = $("#pwd").val();
 		var pw2 = $("#repwd").val();
 		var num = pw.search(/[0-9]/g);
@@ -63,10 +61,9 @@ $(document).ready(function(){
 		    return true;
 		} 
 	});
-
 });
 
-//닉네임 중복체크
+/* 닉네임 중복체크 */
 function fn_nicknameCheck(){
 	//닉네임 공백체크 알림
 	if($("#nickname").val()==""){
@@ -74,7 +71,6 @@ function fn_nicknameCheck(){
 		$("#nickname").focus();
 		return false;
 	}
-
 	$.ajax({
 		url : "nicknameCheck.do",
 		type : "post",
@@ -97,7 +93,6 @@ function fn_nicknameCheck(){
 var buttonOn=$(":input:radio[name=gender]:checked").val();
 $("input:radio[name=gender]:input[value="+buttonOn+"]").attr("cheked", true);
 
-
 /* 주소창 팝업 */
 function goPopup(){
 	// 주소검색을 수행할 팝업 페이지를 호출합니다.
@@ -105,7 +100,7 @@ function goPopup(){
 	var pop = window.open("jusoPopup.do","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 	
 }
 
-/* 주소값 내보내기 */
+/* 주소값 가입창으로 보내기 */
 function jusoCallBack(zipNo, roadAddrPart1, roadAddrPart2, addrDetail){
 	// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
 	/*

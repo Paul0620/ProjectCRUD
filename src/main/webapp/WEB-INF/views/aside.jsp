@@ -7,7 +7,6 @@
 	<title>사이드 메뉴바</title>
 </head>
 <body>
-	<!-- 오른쪽 메뉴바 -->
 	<!-- 로그인 안했을 때 -->
 	<c:if test="${sessionScope.resultLogin == null}">
 	<!-- 로그인버튼 -->
@@ -22,7 +21,7 @@
 	
 	<!-- 로그인 했을 때 -->
 	<c:if test="${sessionScope.resultLogin != null}">
-		<!-- 프로필 사진 -->
+		<!-- 프로필 사진(미구현) -->
 		<div class="text-center" id="profile">
 			<img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" id="main_avatar" alt="avatar">
 			<h5 id="login_nickname">${sessionScope.resultLogin.nickname}님</h5>		
@@ -31,7 +30,7 @@
 		<div class="card my">
 			<input type="button" class="btn" id="logout_btn" value="로그아웃" onclick="location.href='logout.do'" />
 		</div>
-		<!-- 메세지, 메일, 계정관리(미구현) -->
+		<!-- 메세지(미구현), 메일(미구현), 계정관리 -->
 		<div class="input-group bg-light"  id="btns">
 			<button type="button" class="btn col-sm-4" id="message"><i class="fas fa-comments"></i></button>
 			<button type="button" class="btn col-sm-4" id="mail"><i class="fas fa-envelope"></i></button>
@@ -53,7 +52,7 @@
 		</c:if>
 	</c:if>	
 	
-	<!-- 검색바 -->
+	<!-- 모든 게시판 검색바(미구현) -->
 	<div class="card-body" id="serch_input_btn">
 		<form method="post" action="">
 			<div class="input-group">

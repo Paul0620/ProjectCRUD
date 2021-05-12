@@ -18,37 +18,29 @@ import com.board.util.StringUtil;
 @Component
 @Controller
 public class ReadController {
-
 	//로그객체를 생성
 	private Logger log=Logger.getLogger(this.getClass());
 	
 	@Autowired  //대신 사용가능한 어노테이션 @Inject
-	private BoardDao boardDao; //byType <-> byName(@Resouce)
+	private BoardDao boardDao;
 
-	
 	@RequestMapping("/main/read.do")
-	public String process(BoardCommand board, @RequestParam("postnum") int postnum, Model model) {
-		
+	public String readForm(BoardCommand board, @RequestParam("postnum") int postnum, Model model) {
 		if(log.isDebugEnabled()) {
 			log.debug("postnum -> "+postnum);
 		}
-		
-		//1.조회수 증가
+		//조회수 증가
 		boardDao.readcntUp(postnum); //int -> Integer(자동형변환이 일어나기때문) 그래서 경고줄이 안뜸
-		
 		//게시글내용 -> \r\n aaa \r\n -> 메서드로 구현(<br>로 변경) -> 요즘사용은 <pre></pre>
 		model.addAttribute("board",boardDao.selectPost(board.getPostnum()));
 		board.setContent(StringUtil.parseBr(board.getContent()));
-		
 		//댓글목록
 		List<CommentCommand> commentList=boardDao.listComment(postnum);
 		model.addAttribute("commentList",commentList);
-
-		return "boardRead";
-	
+		return "boardRead"; //게시글 목록으로 이동
 	}
 	
-	/*
+	/*(미구현)
 	//글상세보기와 연관(다운로드)
 	@RequestMapping("/board/file.do")
 	public ModelAndView download(@RequestParam("filename") String filename) {
@@ -63,7 +55,6 @@ public class ReadController {
 		
 	}
 	*/
-	
 }
 
 

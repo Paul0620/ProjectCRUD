@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
+	<!-- html 캐쉬방지 -->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>회원가입</title>
+	<title>회원정보수정</title>
 	<!-- html 캐쉬방지 -->
 	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 	<meta http-equiv="Expires" content="0">
@@ -17,7 +17,6 @@
 	<!-- join CSS 추가 -->
 	<link rel="stylesheet" href="../css/join.css">
 </head>
-
 <body>
 	<div id="wrap">
 	<div class="container">
@@ -125,8 +124,7 @@
 	<script type="text/javascript" src="../js/bootstrap.bundle.min.js"></script>
 	<!-- 아이콘 자바스크립트 추가 -->
 	<script src="https://kit.fontawesome.com/2d323a629b.js" crossorigin="anonymous"></script>
-	<!-- register 자바스크립트 추가 -->
+	<!-- memberUpdate 자바스크립트 추가 -->
 	<script type="text/javascript" src="../js/memberUpdate.js"></script>
-
 </body>
 </html>

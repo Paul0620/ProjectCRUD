@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -44,6 +43,7 @@
 					<c:if test="${message == false}">
 						<p class="text-danger text-right">아이디 또는 비밀번호를 다시 입력해주십시오.</p>
 					</c:if>
+					
 					<!-- 로그인버튼 -->
 					<div class="form-group">
 						<input type="submit" class="btn float-right login_btn" id="loginCheck" value="로그인">
@@ -58,8 +58,7 @@
 			</div>
 		</div>
 	</div>
-	
-</div>
+	</div>
 
 	<!-- 제이쿼리 자바스크립트 추가 -->
 	<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>

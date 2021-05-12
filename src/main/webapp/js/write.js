@@ -1,7 +1,4 @@
-/**
- * 게시판작성 js 
- */
-
+/* 게시글 작성/수정 js */
  /* 게시글 내용입력부분 에디터 설정(섬머노트) */
 $(document).ready(function() {
 	var toolbar = [
@@ -41,11 +38,10 @@ $(document).ready(function() {
         }
     };
 
-    $('#summernote').summernote(setting);
-  
-});  
+    $('#summernote').summernote(setting); 
+});
  
- /* 다중업로드를 위한 설정 */ 
+ /* 다중업로드를 위한 설정(미구현) */ 
 /*function uploadSummernoteImageFile(file, el) {
 	data = new FormData();
 	data.append("file", file);

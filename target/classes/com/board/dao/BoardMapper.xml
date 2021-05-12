@@ -1,40 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" ?>  
-<!DOCTYPE mapper   
-    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
-    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
-    
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
 <mapper namespace="board">  
- 	
 <!--  1.모든 필드를 검색  2.번호 메기기 3.보여줄 필드 -->
 <select  id="selectList"  parameterType="map"  resultType="BoardCommand"  >
     select postnum,id,boardnum,type,nickname,title,content,regdate,readcnt,recommand,best
-            from ( select a.*, rownum rnum
-                from (select * from post_tb
-                   <where>
-                     <if test="keyWord!=null and keyField=='title'">
-                            title like '%' || #{keyWord} || '%'
-                     </if>
-                     <if test="keyWord!=null and keyField=='nickname'">
-                            nickname like '%' || #{keyWord} || '%'
-                     </if>
-                     <if test="keyWord!=null and keyField=='content'">
-                            content like '%' || #{keyWord} || '%'
-                     </if>
-                     <if test="keyWord!=null and keyField=='all'">
-                            title like '%' || #{keyWord} || '%'  or
-                            nickname like '%' || #{keyWord} || '%'  or
-                            content like '%' || #{keyWord} || '%'
-                     </if>
- 					</where> 
- 					order by postnum desc ) a ) 
+    	from ( select a.*, rownum rnum
+        	from (select * from post_tb
+            	<where>
+                	<if test="keyWord!=null and keyField=='title'">
+                    	title like '%' || #{keyWord} || '%'
+                    </if>
+                    <if test="keyWord!=null and keyField=='nickname'">
+                    	nickname like '%' || #{keyWord} || '%'
+                    </if>
+                    <if test="keyWord!=null and keyField=='content'">
+                    	content like '%' || #{keyWord} || '%'
+                    </if>
+                    <if test="keyWord!=null and keyField=='all'">
+                    	title like '%' || #{keyWord} || '%'  or
+                        nickname like '%' || #{keyWord} || '%'  or
+                        content like '%' || #{keyWord} || '%'
+                    </if>
+ 				</where> 
+ 			order by postnum desc ) a ) 
 	<![CDATA[where rnum >=#{start} AND rnum <=#{end}]]>
 </select>
  
-
 <!-- 검색어에 해당하는 총 레코드 수 구하기 -->
 <select id="totalCount" parameterType="map" resultType="Integer">
     select count(*) from post_tb
-        <where>
+		<where>
             <if test="keyWord!=null and keyField=='title'">
                  title like '%' || #{keyWord} || '%'
             </if>
@@ -51,13 +46,11 @@
             </if>
         </where>
  </select>
- 			
- 			
+ 						
  <!-- 최대값구하기 -->
  <select id="getNewPostnum" resultType="int" >
     select max(postnum) from post_tb
  </select>
- 
  
  <!-- 조회순 높은순으로 정렬 -->
  <select id="listSet" parameterType="map" resultType="int">
@@ -75,25 +68,21 @@
         </where>
  </select>
  
- 
  <!-- 글쓰기 -->
  <insert id="insertPost" parameterType="BoardCommand">
      insert into post_tb(postnum,id,boardnum,type,nickname,title,content,regdate,readcnt,recommand,best)
      values(#{postnum},#{id},#{boardnum},#{type},#{nickname},#{title},#{content},sysdate,0,0,0) 
  </insert>			
  
- 
  <!-- 글상세보기(레코드 한개 출력)  -->
  <select id="selectPost" parameterType="Integer" resultType="BoardCommand">
     select * from post_tb where postnum=#{postnum}
  </select>
  
- 
  <!-- 조회수 증가 -->
  <update id="readcntUp" parameterType="Integer">
     update post_tb set readcnt=readcnt+1 where postnum=#{postnum}
  </update>
- 
  
  <!-- 글수정하기 -->
  <update id="updatePost" parameterType="BoardCommand">
@@ -101,12 +90,10 @@
  	where postnum=#{postnum}
  </update>
  
- 
  <!-- 글삭제하기 -->
  <delete id="deletePost" parameterType="Integer">
  	delete from post_tb where postnum=#{postnum}
  </delete>
- 
  
 <!-- 댓글================================================== -->
 <!-- 댓글목록 -->
@@ -114,13 +101,11 @@
 	select * from comment_tb where postnum=#{postnum} order by commentnum desc
 </select>
 
-
 <!-- 댓글작성 -->
 <insert id="insertComment" parameterType="CommentCommand">
 	insert into comment_tb(commentnum,postnum,id,nickname,content,regdate,good,best)
 	values((select nvl(max(commentnum),0)+1 from comment_tb),#{postnum},#{id},#{nickname},#{content},sysdate,0,0)
 </insert>
-
 
 <!-- 댓글수정 -->
 <update id="updateComment" parameterType="CommentCommand">
@@ -128,18 +113,15 @@
 	where commentnum=#{commentnum}
 </update>
 
-
 <!-- 댓글삭제 -->
 <delete id="deleteComment" parameterType="Integer">
 	delete from comment_tb where commentnum=#{commentnum}
 </delete>
 
-
 <!-- 대상댓글 조회(수정,삭제,좋아요) -->
 <select id="selectComment" resultType="CommentCommand">
 	select * from comment_tb where commentnum=${commentnum}
 </select>
-
 </mapper>
 
 

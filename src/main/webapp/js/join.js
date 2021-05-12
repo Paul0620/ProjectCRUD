@@ -1,9 +1,6 @@
 /* 회원가입 검사 */
-
-$(document).ready(function(){
-			
-	$("#check-btn").on("click", function(){
-			
+$(document).ready(function(){		
+	$("#check-btn").on("click", function(){	
 		//아이디
 		if($("#id").val()==""){
 			alert("아이디를 입력해주세요.");
@@ -58,6 +55,7 @@ $(document).ready(function(){
 			return false;
 		}
 		
+		//비밀번호 입력양식 체크
 		var pw = $("#pwd").val();
 		var pw2 = $("#repwd").val();
 		var num = pw.search(/[0-9]/g);
@@ -90,7 +88,7 @@ $(document).ready(function(){
 
 });
 
-//아이디 중복체크
+/* 아이디 중복체크 */
 function fn_idCheck(){
 	//아이디 공백체크 알림
 	if($("#id").val()==""){
@@ -98,7 +96,6 @@ function fn_idCheck(){
 		$("#id").focus();
 		return false;
 	}
-	
    $.ajax({
       url : "idCheck.do",
       type : "post",
@@ -117,7 +114,7 @@ function fn_idCheck(){
    });
 }
 
-//닉네임 중복체크
+/* 닉네임 중복체크 */
 function fn_nicknameCheck(){
 	//닉네임 공백체크 알림
 	if($("#nickname").val()==""){
@@ -125,7 +122,6 @@ function fn_nicknameCheck(){
 		$("#nickname").focus();
 		return false;
 	}
-
 	$.ajax({
 		url : "nicknameCheck.do",
 		type : "post",

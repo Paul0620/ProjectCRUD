@@ -23,6 +23,7 @@
         </property>
     </bean>
     
+    <!-- 타일즈는 게시판 화면전환 -->
     <bean id="tilesViewResolver" 
     		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
         <property name="viewClass"
@@ -30,6 +31,7 @@
         <property name="order" value="1"/>
     </bean>
     
+    <!-- 회원관리, 로그인 처리를 위해 -->
     <bean id="viewResolver"
 	      class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 	     <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
@@ -38,14 +40,9 @@
 	     <property name="order" value="2"/>
 	</bean>
     
-	<!-- DownloadView클래스 객체 생성 -->
- 	<bean id="downloadView" class="com.board.view.DownloadView" />
-
-    
     <!-- 예외페이지 작성(에러가 발생이 될 때 개발자가 작성한 예외페이지로 이동) 
     		예전엔 톰캣서버가 에러메세지를 알려줬지만 이제는 개발자(내가)가 작성한 에러메세지페이지를 통해서
     		에러정보를 알고 싶을 때 작성하는 기법
-    		
     		<prop key="발생가능성이 있는 에외처리 클래스명">예외처리페이지명(확장자 생략)</prop>
     -->
     <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
@@ -55,6 +52,9 @@
             </props>
         </property>
     </bean>
+    
+   	<!-- DownloadView클래스 객체 생성 -->
+ 	<bean id="downloadView" class="com.board.view.DownloadView" />
     
     <!-- 파일 다운로드뷰를 위한 전용 viewResolver를 빈즈로 등록(객체생성하기 위해서) setOrder(0) -->
     <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="0" />

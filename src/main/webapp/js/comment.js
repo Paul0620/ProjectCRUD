@@ -1,15 +1,12 @@
 /* 댓글 js */
-
- /* 댓글쓰기 */
+/* 댓글쓰기 */
 function fn_comment(postnum){  
-	
 	var content=$("#content").val();
 	if(content==""){
         		alert("내용을 입력해주세요.");
         		$("#content").focus();
         		return false;
-    }
-        	
+    } 	
     $.ajax({
         type:"POST",
         url : "cWrite.do",
@@ -23,20 +20,15 @@ function fn_comment(postnum){
         },
         error:function(request,status,error){
             alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-       }
-        
-    });
+		}  
+	});
 } 
 
-
 /* 댓글수정 */
-function commentUpdateCheck(commentnum, id){
+function commentUpdateCheck(commentnum,id){
 	var updateContent=$("#updateContent").val();
-	
 	var paramData=JSON.Stringify({"content":commentContent,"commentnum":commentnum});
-	
 	var headers={"Content-Type":"application/json","X-HTTP-Method_Override":"POST"};
-	
 	$.ajax({
 		type:"POST",
 		url:"cUpdate.do",
@@ -44,10 +36,8 @@ function commentUpdateCheck(commentnum, id){
 		headers:headers,
 		dataType:'text',
 		success:function(result){
-			
 			console.log(result);
-			cancel();
-				
+			cancel();	
 		}
 		,error:function(error){
 			console.log("에러:"+error);
@@ -55,8 +45,7 @@ function commentUpdateCheck(commentnum, id){
 	});
 }
 
-
-/* 댓글삭제 
+/* 댓글삭제(미구현) 
 
 function fn_deleteComment(commentnum){
 	var paramData = {"commentnum": commentnum};
@@ -78,14 +67,13 @@ function fn_deleteComment(commentnum){
 "fn_deleteComment(${commeneList.commentnum})"
 */
 
-
-
+/* 댓글삭제(미구현) 
 function del(commentnum) {
 	var chk = confirm("정말 삭제하시겠습니까?");
 	if (chk) {
 		location.href='cDelete.do?commentnum='+commentnum;
 	}
-}
+}*/
 
 
 

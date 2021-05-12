@@ -70,9 +70,8 @@ public class CommentCommand {
 	//이 메서드는 현재 있는 클래스에서만 사용이 가능하도록 성정  -> private
 	private static String convert(String name) {
 		if(name!=null){
-			//System.out.println("name->"+name);
-		
-		//2.입력받은 문자열중에서 자바스크립트 구문을 실행시킬 수 있는 특수기호를 입력x(<,>)
+		//System.out.println("name->"+name);
+		//입력받은 문자열중에서 자바스크립트 구문을 실행시킬 수 있는 특수기호를 입력x(<,>)
 		// -> replaceAll(1.변경전 문자열, 2.변경후 문자열)
 			name=name.replaceAll("<", "&lt"); //< 가 입력되면 바꿔준다
 			name=name.replaceAll(">", "&gt"); //>가 입력되면 바꿔준다
@@ -82,8 +81,7 @@ public class CommentCommand {
 			//"test" 'test'
 			name=name.replaceAll("\"","&quot"); //큰따옴표 " 가 입력되면 바꿔준다
 			name=name.replaceAll("\'","&apos"); //작은따옴표 ' 가 입력되면 바꿔준다
-			
-			System.out.println("name->"+name);
+			//System.out.println("name->"+name);
 		} else {
 			return null; //입력을 하지 않았다면 더 이상 실행x
 		}

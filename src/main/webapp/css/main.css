@@ -2,8 +2,10 @@
 @import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css);
 @import url(https://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
+.navbar-brand, h1, h2, h3, h4, h5 { 
+	font-family:'Jeju Gothic' 
+}
 
-.navbar-brand, h1, h2, h3, h4, h5 { font-family:'Jeju Gothic' }
 body { 
 	font-family:'Nanum Gothic';  	
 }
@@ -12,9 +14,7 @@ body {
     margin-right: 0px !important;
 }
 
-
 /* header.jsp 폼설정 ============================================================== */
-
 body { 
 	padding-top:90px;
 }
@@ -42,8 +42,6 @@ body {
 
 /* aside.jsp 폼설정=============================================================== */
 /* 메인페이지 화면에서 사이드바메뉴 크기설정 */
-
-
 #aside {
 	padding-right: 0px; 
 	padding-left: 0px;
@@ -75,7 +73,8 @@ body {
 	font-weight:bold;
 	padding: 0.500rem;
 }
- #join_btn:hover, #logout_btn:hover, #memberView_btn:hover {
+
+#join_btn:hover, #logout_btn:hover, #memberView_btn:hover {
 	color: #f8f9fa;
 	background: #343a40;
 	border-radius: .25rem;
@@ -85,11 +84,13 @@ body {
 #main_avatar {
 	margin-top:0px;
 }
+
 /* 프로필 파일업로드 바 설정 */
 #profile_file {
 	width:268px;
 	padding-bottom:10px;
 }
+
 img {
 	width: 220px;
 	height: 240px !important;
@@ -133,7 +134,6 @@ img {
 #serch_input_btn {
     padding:0px;
 }
-
 
 /* footer 설정 ==================================================================*/
 footer {

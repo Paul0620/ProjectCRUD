@@ -18,8 +18,7 @@
 			</list>
 		</property>
 	</bean>
-    
-    
+      
     <!-- 2.커넥션 풀을 이용한 DataSource 설정 -->
 	<bean id="dataSource"
        class="org.apache.commons.dbcp.BasicDataSource">
@@ -37,12 +36,10 @@
 		<property name="maxWait" value="5"></property>
 	</bean>
 
-
 	<!-- 3.SqlSessionFactoryBean 등록 -->
 	<!-- Mybatis설정이 필요(SqlSessionFactoryBean)  -->
 	<!-- (2)(Mybatis) bean등록(SqlSessionFactoryBean)
-        1)configLcation->테이블에 대한 xml 파일을 불러올때 
-        	/WEB-INF/SqlMapConfig.xml -> 경로만 다름
+        1)configLcation->테이블에 대한 xml 파일을 불러올때 /WEB-INF/SqlMapConfig.xml -> 경로만 다름
         2)dataSource->DB연결정보 멤버변수
 	-->
 	<bean id="sqlSessionFactory"  class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -54,6 +51,5 @@
 	<bean id="sqlSessionTemplate"  class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory" />
 	</bean>
-	
 	
 </beans>

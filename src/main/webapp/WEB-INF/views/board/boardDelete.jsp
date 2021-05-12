@@ -1,9 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
-<title>게시글화면</title>
+<title>게시글 삭제화면</title>
 </head>
 <body>
 <div class="container">
@@ -11,6 +9,8 @@
 	<div class="card">
 		<div class="card-header bg-dark text-white"><h2>자유게시판</h2></div>
 	</div>
+	
+	<!-- 게시글 삭제 버튼 -->
 	<div class="card">	
 		<form method="post" action="delete.do">
 			<input type="hidden" id="id" name="id" value="${command.id}">

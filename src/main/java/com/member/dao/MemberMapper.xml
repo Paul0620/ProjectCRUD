@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>  
-<!DOCTYPE mapper   
-    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
-    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-      
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">   
 <mapper namespace="MemberDao">  
-  
   <!--페이징처리해주는 SQL구문 
      rownum->내부적으로 자동으로 순번을 매기면서 출력시켜주는 오라클의 내장번호
+     CDATA(Character Data) 문자데이터 사용 -> >=, #{}값이 파싱하는 대상이 안돼도록 처리
   -->
   <select id="getMemberList"  parameterType="java.util.Map" resultType="MemberCommand">
       select * from (select a.*, rownum rnum
@@ -68,8 +65,7 @@
   <!-- 로그인 -->
   <select id="loginMember" resultType="MemberCommand">
   	select id,pwd,nickname from login_tb where id=#{id} and pwd=#{pwd}
-  </select>
-  
+  </select> 
 </mapper>
 
 

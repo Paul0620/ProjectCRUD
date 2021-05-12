@@ -8,8 +8,6 @@
 	<!-- Footer -->
 	<footer class="footerbar py-2 bg-dark">
 		<div class="container">
-			<!-- 전체 : ${sessionScope.totalCount }
-    		오늘 : ${sessionScope.todayConint }  -->
     		<p class="m-0 text-center text-white">Copyright &copy; project 2021</p>
     	</div>
 	</footer>

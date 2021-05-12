@@ -1,14 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-    
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>회원가입</title>
+	<title>회원정보보기</title>
 	<!-- html 캐쉬방지 -->
 	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 	<meta http-equiv="Expires" content="0">
@@ -21,7 +19,6 @@
 
 <body>
 	<div id="wrap">
-
 	<div class="container">
 		<div class="col-sm-6 col-sm-offset-3 offset-sm-3">
 			<div class="page-header">
@@ -87,16 +84,18 @@
 						</table>
 					</div>
 				</div>
+				
 				<!-- 회원관리버튼 -->
 				<div class="block4" id="join_btn">
 					<c:if test="${sessionScope.resultLogin.id != 'admin'}">
-						<input type="button" class="btn btn-dark btn-lg col-sm-3" value="회원수정" id="check-btn" onClick="location.href='memberUpdate.do?id=${member.id}'">
-						<input type="button" class="btn btn-dark btn-lg col-sm-3" value="회원탈퇴" id="check-btn" onClick="location.href='memberDelete.do?id=${member.id}'">
-						<input type="button" class="btn btn-dark btn-lg col-sm-3" value="취소" id="check-btn" onClick="location.href='list.do'">
-					</c:if>	
+						<input type="button" class="btn btn-dark col-sm-3" value="회원수정" id="check-btn" onClick="location.href='memberUpdate.do?id=${member.id}'">
+						<input type="button" class="btn btn-dark col-sm-3" value="회원탈퇴" id="check-btn" onClick="location.href='memberDelete.do?id=${member.id}'">
+						<input type="button" class="btn btn-dark col-sm-3" value="취소" id="check-btn" onClick="location.href='list.do'">
+					</c:if>
+					<!-- 관리자가 접속시 보는 버튼 -->	
 					<c:if test="${sessionScope.resultLogin.id == 'admin'}">
-						<input type="button" class="btn btn-dark btn-lg col-sm-3" value="회원목록" id="check-btn" onClick="location.href='memberList.do'">
-						<input type="button" class="btn btn-dark btn-lg col-sm-3" value="메인페이지" id="check-btn" onClick="location.href='list.do'">
+						<input type="button" class="btn btn-dark col-sm-3" value="회원목록" id="check-btn" onClick="location.href='memberList.do'">
+						<input type="button" class="btn btn-dark col-sm-3" value="메인페이지" id="check-btn" onClick="location.href='list.do'">
 					</c:if>
 				</div>
 			</form>
@@ -110,6 +109,5 @@
 	<script type="text/javascript" src="../js/bootstrap.bundle.min.js"></script>
 	<!-- 아이콘 자바스크립트 추가 -->
 	<script src="https://kit.fontawesome.com/2d323a629b.js" crossorigin="anonymous"></script>
-
 </body>
 </html>

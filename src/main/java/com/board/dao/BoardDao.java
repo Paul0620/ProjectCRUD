@@ -17,7 +17,7 @@ public interface BoardDao {
 		//최대값 구하기
 		public int getNewPostnum();
 		
-		//조회순, 추천순 정렬(필요여부 아직 모름 나중에 구현)  //아직 못함=======================
+		//조회순, 추천순 정렬(미구현)
 		public List<BoardCommand> listset(Map<String,Object> map);
 		
 		//게시판에 글쓰기
@@ -43,13 +43,13 @@ public interface BoardDao {
 		//댓글작성
 		public void insertComment(CommentCommand comment);
 
-		//댓글수정
+		//댓글수정(미구현)
 		public void updateComment(CommentCommand comment);
 		
-		//댓글삭제
+		//댓글삭제(미구현)
 		public void deleteComment(Integer commentnum);
 		
-		//댓글조회(삭제,수정,좋아요)
+		//댓글조회(삭제,수정,좋아요)(미구현)
 		public CommentCommand selectComment(int commentnum);
 		
 }

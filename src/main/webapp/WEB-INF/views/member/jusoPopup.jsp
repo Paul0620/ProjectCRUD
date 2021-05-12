@@ -4,36 +4,35 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<%
-request.setCharacterEncoding("UTF-8");
-String inputYn = request.getParameter("inputYn"); 
-String zipNo = request.getParameter("zipNo"); 
-String roadAddrPart1 = request.getParameter("roadAddrPart1"); 
-String roadAddrPart2 = request.getParameter("roadAddrPart2"); 
-String addrDetail = request.getParameter("addrDetail"); 
-%>
+<title>주소검색 팝업창</title>
+	<%
+	request.setCharacterEncoding("UTF-8");
+	String inputYn = request.getParameter("inputYn"); 
+	String zipNo = request.getParameter("zipNo"); 
+	String roadAddrPart1 = request.getParameter("roadAddrPart1"); 
+	String roadAddrPart2 = request.getParameter("roadAddrPart2"); 
+	String addrDetail = request.getParameter("addrDetail"); 
+	%>
 </head>
 <script language="javascript">
-/* 주소팝업창 */
-function init(){
-	var url = location.href;
-	var confmKey = "U01TX0FVVEgyMDIxMDMwNjE1NDkxMjExMDg4NjQ=";
-	var resultType = "4"; // 도로명주소 검색결과 화면 출력내용, 1 : 도로명, 2 : 도로명+지번+상세보기(관련지번, 관할주민센터), 3 : 도로명+상세보기(상세건물명), 4 : 도로명+지번+상세보기(관련지번, 관할주민센터, 상세건물명)
-	var inputYn= "<%=inputYn%>";
-	if(inputYn != "Y"){
-		document.form.confmKey.value = confmKey;
-		document.form.returnUrl.value = url;
-		document.form.resultType.value = resultType;
-		document.form.action="https://www.juso.go.kr/addrlink/addrLinkUrl.do"; //인터넷망
-		//document.form.action="https://www.juso.go.kr/addrlink/addrMobileLinkUrl.do"; //모바일 웹인 경우, 인터넷망
-		document.form.submit();
-	}else{
-		opener.jusoCallBack("<%=zipNo%>","<%=roadAddrPart1%>","<%=roadAddrPart2%>","<%=addrDetail%>");
-		window.close();
+	/* 주소팝업창 */
+	function init(){
+		var url = location.href;
+		var confmKey = "U01TX0FVVEgyMDIxMDMwNjE1NDkxMjExMDg4NjQ=";
+		var resultType = "4"; // 도로명주소 검색결과 화면 출력내용, 1 : 도로명, 2 : 도로명+지번+상세보기(관련지번, 관할주민센터), 3 : 도로명+상세보기(상세건물명), 4 : 도로명+지번+상세보기(관련지번, 관할주민센터, 상세건물명)
+		var inputYn= "<%=inputYn%>";
+		if(inputYn != "Y"){
+			document.form.confmKey.value = confmKey;
+			document.form.returnUrl.value = url;
+			document.form.resultType.value = resultType;
+			document.form.action="https://www.juso.go.kr/addrlink/addrLinkUrl.do"; //인터넷망
+			//document.form.action="https://www.juso.go.kr/addrlink/addrMobileLinkUrl.do"; //모바일 웹인 경우, 인터넷망
+			document.form.submit();
+		}else{
+			opener.jusoCallBack("<%=zipNo%>","<%=roadAddrPart1%>","<%=roadAddrPart2%>","<%=addrDetail%>");
+			window.close();
+		}
 	}
-}
-
 </script>
 <body onload="init();">
 	<form id="form" name="form" method="post">

@@ -67,7 +67,7 @@
 			</table>
 		</div>
 		
-		<!-- 페이지 -->
+		<!-- 페이지 처리 -->
 		<ul class="pagination justify-content-center">
 			${pagingHtml}
 		</ul>

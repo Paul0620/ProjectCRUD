@@ -26,7 +26,7 @@ public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDao {
 		return getSqlSession().selectOne("totalCount",map);
 	}
 
-	//최대값 구하기
+	//최대값 구하기(개시글 총갯수)
 	public int getNewPostnum() {
 		// TODO Auto-generated method stub
 		//Object -> Integer(래퍼클래스) -> int
@@ -35,7 +35,7 @@ public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDao {
 		return newPostnum;
 	}
 	
-	//조회순, 추천순 정렬 //아직 못함=======================
+	//조회순, 추천순 정렬(미구현)
 	public List<BoardCommand> listset(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		List<BoardCommand> list=getSqlSession().selectList("listSet",map);
@@ -90,21 +90,21 @@ public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDao {
 		getSqlSession().insert("insertComment",comment);
 	}
 	
-	//댓글수정
+	//댓글수정(미구현)
 	@Override
 	public void updateComment(CommentCommand comment) {
 		// TODO Auto-generated method stub
 		getSqlSession().update("updateComment",comment);
 	}
 	
-	//댓글삭제
+	//댓글삭제(미구현)
 	@Override
 	public void deleteComment(Integer commentnum) {
 		// TODO Auto-generated method stub
 		getSqlSession().delete("deleteComment",commentnum);
 	}
 	
-	//댓글조회(삭제,수정,좋아요)
+	//댓글조회(삭제,수정,좋아요)(미구현)
 	public CommentCommand selectComment(int commentnum) {
 		return (CommentCommand)getSqlSession().selectOne("selectComment",commentnum);
 	}
