@@ -88,14 +88,14 @@ ___
 ---
 
 ## CRUDFest 패키지 구조
-!<img src="https://user-images.githubusercontent.com/79445646/118146004-24ec2480-b449-11eb-9c09-1ebe616043fc.jpg" width="500">
+<img src="https://user-images.githubusercontent.com/79445646/118146004-24ec2480-b449-11eb-9c09-1ebe616043fc.jpg" width="700">
 
 
 
 ---
 
 ## CRUDFest DB 모델링
-!<img src="https://user-images.githubusercontent.com/79445646/118145590-b8712580-b448-11eb-837c-b6584fab01ef.jpg" width="500">
+<img src="https://user-images.githubusercontent.com/79445646/118145590-b8712580-b448-11eb-837c-b6584fab01ef.jpg" width="700">
 
 
 ---
