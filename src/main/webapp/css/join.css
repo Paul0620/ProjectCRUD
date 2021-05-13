@@ -34,8 +34,8 @@ h1 {
 }
 
 /* 중복체크, 주소검색 버튼 위치 조정 */
-#check_btn, #check_btn1, #search_btn {
-	padding-bottom:10px;
+#check_btn, #delete-btn, #cancel-btn, #memberList-btn, #check_btn1, #search_btn {
+	padding-bottom:6px;
 }
 
 /* 프로필 사진 테이블 설정 */
@@ -52,7 +52,7 @@ img {
 }
 
 /* 회원가입 버튼 설정 */
-#check-btn {
+#check-btn, #delete-btn, #cancel-btn, #memberList-btn {
 	line-height:2.0;
 	font-weight:bold;
 	font-size:20px;

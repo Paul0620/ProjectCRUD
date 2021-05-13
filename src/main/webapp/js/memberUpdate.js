@@ -1,5 +1,5 @@
 /* 회원수정 버튼클릭 후 체크 */
-$(document).ready(function(){	
+$(document).ready(function(){
 	$("#check-btn").on("click", function(){	
 		//닉네임
 		if($("#nickname").val()==""){

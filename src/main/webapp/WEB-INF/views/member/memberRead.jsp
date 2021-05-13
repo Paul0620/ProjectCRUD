@@ -89,13 +89,13 @@
 				<div class="block4" id="join_btn">
 					<c:if test="${sessionScope.resultLogin.id != 'admin'}">
 						<input type="button" class="btn btn-dark col-sm-3" value="회원수정" id="check-btn" onClick="location.href='memberUpdate.do?id=${member.id}'">
-						<input type="button" class="btn btn-dark col-sm-3" value="회원탈퇴" id="check-btn" onClick="location.href='memberDelete.do?id=${member.id}'">
-						<input type="button" class="btn btn-dark col-sm-3" value="취소" id="check-btn" onClick="location.href='list.do'">
+						<input type="button" class="btn btn-dark col-sm-3" value="회원탈퇴" id="delete-btn" onClick="location.href='memberDelete.do?id=${member.id}'">
+						<input type="button" class="btn btn-dark col-sm-3" value="취소" id="cancel-btn" onClick="location.href='list.do'">
 					</c:if>
 					<!-- 관리자가 접속시 보는 버튼 -->	
 					<c:if test="${sessionScope.resultLogin.id == 'admin'}">
-						<input type="button" class="btn btn-dark col-sm-3" value="회원목록" id="check-btn" onClick="location.href='memberList.do'">
-						<input type="button" class="btn btn-dark col-sm-3" value="메인페이지" id="check-btn" onClick="location.href='list.do'">
+						<input type="button" class="btn btn-dark col-sm-3" value="회원목록" id="memberList-btn" onClick="location.href='memberList.do'">
+						<input type="button" class="btn btn-dark col-sm-3" value="메인페이지" id="cancel-btn" onClick="location.href='list.do'">
 					</c:if>
 				</div>
 			</form>
