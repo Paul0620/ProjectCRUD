@@ -88,6 +88,7 @@ ___
 ---
 
 ## CRUDFest 패키지 구조
+![CRUD package](https://user-images.githubusercontent.com/79445646/118144005-e9e8f180-b446-11eb-980b-293a32750215.jpg)
 
 
 ---
