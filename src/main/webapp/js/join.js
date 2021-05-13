@@ -1,7 +1,7 @@
-/* 회원가입 검사 */
+/* 회원가입 버튼 클릭 후 체크 */
 $(document).ready(function(){		
 	$("#check-btn").on("click", function(){	
-		//아이디
+		/*아이디
 		if($("#id").val()==""){
 			alert("아이디를 입력해주세요.");
 			$("#id").focus();
@@ -11,7 +11,7 @@ $(document).ready(function(){
 		var idChkVal = $("#idCheck").val();
 		if(idChkVal == "N"){
 			alert("중복확인 버튼을 눌러주세요.");
-		}
+		}*/
 		//비밀번호
 		if($("#pwd").val()==""){
 			alert("비밀번호를 입력해주세요.");
@@ -24,7 +24,6 @@ $(document).ready(function(){
 			$("#repwd").focus();
 			return false;
 		}
-		
 		//닉네임
 		if($("#nickname").val()==""){
 			alert("닉네임을 입력해주세요.");
@@ -54,7 +53,6 @@ $(document).ready(function(){
 			$("#phone").focus();
 			return false;
 		}
-		
 		//비밀번호 입력양식 체크
 		var pw = $("#pwd").val();
 		var pw2 = $("#repwd").val();
@@ -88,7 +86,7 @@ $(document).ready(function(){
 
 });
 
-/* 아이디 중복체크 */
+/* 아이디 중복버튼 클릭 후 체크 */
 function fn_idCheck(){
 	//아이디 공백체크 알림
 	if($("#id").val()==""){
@@ -114,7 +112,7 @@ function fn_idCheck(){
    });
 }
 
-/* 닉네임 중복체크 */
+/* 닉네임 중복버튼 클릭 후 체크 */
 function fn_nicknameCheck(){
 	//닉네임 공백체크 알림
 	if($("#nickname").val()==""){

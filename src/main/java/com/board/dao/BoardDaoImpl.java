@@ -26,7 +26,7 @@ public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDao {
 		return getSqlSession().selectOne("totalCount",map);
 	}
 
-	//최대값 구하기(개시글 총갯수)
+	//최대값 구하기(개시글 총개수)
 	public int getNewPostnum() {
 		// TODO Auto-generated method stub
 		//Object -> Integer(래퍼클래스) -> int

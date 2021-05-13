@@ -24,7 +24,7 @@
 			<!-- 상단메뉴바(미구현) -->
 			<div class="collapse navbar-collapse navbar-ex1-collapse navbar-right">
 				<ul class="nav navbar-nav ml-auto" role="menu" id="top_menu">
-					<li class="nav-item active" role="presentation"><a class="nav-link" onclick="">HOME</a></li>
+					<li class="nav-item active" role="presentation"><a class="nav-link" onclick="location.href='list.do'">HOME</a></li>
 					<li class="nav-item active" role="presentation"><a class="nav-link" onclick="">NEWS</a></li>
 					<li class="nav-item active" role="presentation"><a class="nav-link" onclick="">사고팔고</a></li>
 					<li class="nav-item active" role="presentation"><a class="nav-link" onclick="">여행가자</a></li>

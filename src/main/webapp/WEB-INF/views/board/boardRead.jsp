@@ -50,14 +50,15 @@
 						<tr>
 							<td>조회수 : ${board.readcnt}</td>
 							<td>좋아요 : ${board.recommand}</td>
-							<c:if test="${sessionScope.resultLogin.id == board.id || sessionScope.resultLogin.id == 'admin'}">
-								<td id="read_setbtn">
+							<td id="read_setbtn">
+								<input type="button" class="btn btn-dark float-right" id="read_back" value="목록" onClick="location=href='list.do'">
+								<c:if test="${sessionScope.resultLogin.id == board.id || sessionScope.resultLogin.id == 'admin'}">
 									<input type="button" class="btn btn-dark float-right" id="read_delete" value="삭제" onClick="del(${board.postnum})">
-									<c:if test="${sessionScope.resultLogin.id != 'admin'}">
+									<c:if test="${sessionScope.resultLogin.id == board.id}">
 										<input type="button" class="btn btn-dark float-right" id="read_update" value="수정" onClick="location.href='update.do?postnum=${board.postnum}'">
 									</c:if>
-								</td>
-							</c:if>
+								</c:if>
+							</td>
 						</tr>
 					</tbody>
 				</table>

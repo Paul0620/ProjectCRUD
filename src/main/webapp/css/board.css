@@ -210,6 +210,6 @@ label {
 	padding-bottom:0px !important;
 }
 
-#read_update{
+#read_update, #read_delete{
     margin-right: 1px !important;
 }

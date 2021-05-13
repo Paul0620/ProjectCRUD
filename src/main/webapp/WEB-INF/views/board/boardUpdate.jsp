@@ -51,7 +51,7 @@
 							${command.content}
 						</textarea>
 					</td>
-				</tr><br>
+				</tr>
 			</tbody>
 			
 			<!-- 게시글 수정, 초기화 버튼 -->

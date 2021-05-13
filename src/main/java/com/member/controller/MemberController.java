@@ -115,7 +115,7 @@ public class MemberController {
 		}
 		int count=memberDao.getMemberCount(); //가입자수 카운트
 		//System.out.println("count="+count);
-		//페이징처리->PagingUtil클래스(현재페이지,총갯수,블럭당페이지수,페이지당레코드수,보여줄페이지명)
+		//페이징처리->PagingUtil클래스(현재페이지,총개수,블럭당페이지수,페이지당레코드수,보여줄페이지명)
 		PagingUtil page=new PagingUtil(currentPage,count,10,5,"memberList.do");
 		//배열과 동일한 역할을 하는 List 하지만 리스트에 담는 내용물이 다름 -> 사용하는 타입이 다를 때 Generic타입을 사용
 		List<MemberCommand> list=null;

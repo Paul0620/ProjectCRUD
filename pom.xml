@@ -13,7 +13,6 @@
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
-
   <!-- 오라클 드라이버 다운로드 받는 위치 지정 -->
   <repositories>
      <repository>
@@ -181,7 +180,6 @@
 	</dependency>
   </dependencies>
   
-
   <build>
     <finalName>CRUDFest</finalName>
 	<plugins>

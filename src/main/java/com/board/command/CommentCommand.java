@@ -38,7 +38,7 @@ public class CommentCommand {
 		return content;
 	}
 	public void setContent(String content) {
-		this.content = convert(content);
+		this.content = content;
 	}
 	public Date getRegdate() {
 		return regdate;

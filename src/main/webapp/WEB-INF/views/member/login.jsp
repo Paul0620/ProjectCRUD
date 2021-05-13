@@ -21,7 +21,7 @@
 	<div class="d-flex justify-content-center h-100">
 		<div class="card">
 			<div class="card-header bg-dark">
-				<h1 onClick="location.href='home.do'">YOEGIMOYEO</h1>
+				<h1 onClick="location.href='list.do'">YOEGIMOYEO</h1>
 			</div>
 			<div class="card-body">
 				<form name="loginCheck" method="post" action="login.do">

@@ -1,4 +1,4 @@
-/* 회원수정 검사 */
+/* 회원수정 버튼클릭 후 체크 */
 $(document).ready(function(){	
 	$("#check-btn").on("click", function(){	
 		//닉네임
@@ -30,7 +30,6 @@ $(document).ready(function(){
 			$("#phone").focus();
 			return false;
 		}
-		
 		//비밀번호 입력양식 체크
 		var pw = $("#pwd").val();
 		var pw2 = $("#repwd").val();
@@ -63,7 +62,7 @@ $(document).ready(function(){
 	});
 });
 
-/* 닉네임 중복체크 */
+/* 닉네임 중복버튼 클릭 후 체크 */
 function fn_nicknameCheck(){
 	//닉네임 공백체크 알림
 	if($("#nickname").val()==""){
