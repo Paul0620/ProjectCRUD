@@ -94,6 +94,7 @@ ___
 ---
 
 ## CRUDFest DB 모델링
+![CRUD model](https://user-images.githubusercontent.com/79445646/118145590-b8712580-b448-11eb-837c-b6584fab01ef.jpg)
 
 
 ---
