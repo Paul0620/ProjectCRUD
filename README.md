@@ -100,7 +100,7 @@ ___
 ## Front-End 주요기능
 ### BootStrap을 이용한 화면 설계 및 생성
 >회원가입
-- 회원가입시 유효성 검사를 통해 필수입력공백, 비밀번호형식, 중복버튼클릭 유무 확인
+- 회원가입시 유효성 검사를 통해 필수입력공백, 비밀번호형식, 중복버튼클릭 유무 확인(공백처리는 로그인도 동일)
 ```js
 /* 회원가입 버튼 클릭시 필수입력칸 체크후 체크 */
 $(document).ready(function(){		
@@ -188,6 +188,7 @@ $(document).ready(function(){
 });
 ```
 <img src="" width="700">
+
 ---
 
 - 아이디 중복버튼 클릭시 공백체크 후 중복확인(=닉네임)
@@ -219,6 +220,7 @@ function fn_idCheck(){
 }
 ```
 <img src="" width="700">
+
 ---
 
 - 도로명주소API를 활용한 주소검색하기
@@ -258,6 +260,7 @@ function jusoCallBack(zipNo, roadAddrPart1, roadAddrPart2, addrDetail){
 }
 ```
 <img src="" width="700">
+
 ---
 
 
