@@ -270,6 +270,7 @@ function jusoCallBack(zipNo, roadAddrPart1, roadAddrPart2, addrDetail){
 >메인페이지
 - 로그인 전후 메인페이지 메뉴변환
 ```jsp
+<!-- aside.jsp -->
 <!-- 로그인 안했을 때 -->
 <c:if test="${sessionScope.resultLogin == null}">
 	<!-- 로그인버튼 -->
