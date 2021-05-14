@@ -1,12 +1,14 @@
 <!-- Header -->
 # CRUD 게시판 - 개인 프로젝트
 
+
 <!-- Body -->
 ## 프로젝트 목적
 - 첫 프로젝트임으로 제일 많이 사용하는 게시판을 알기위한 공부
 - 프로젝트로 사용하는 언어와 프로그램 이해도 상승시키기
 - 진행중 부족한 점과 보완해야할 점 알기
 ___
+
 
 ## 개발환경
 >O/S
@@ -24,6 +26,7 @@ ___
 - Maven 3.3.0
 - Tomcat 8.5
 ---
+
 
 ## 개발기간 - 2021/03/08 ~ 2021/05/12 (10주)
 >1주차 (03-08 ~ 03-14) 주제 선정 및 업무분석
@@ -87,15 +90,18 @@ ___
 - 마무리
 ---
 
+
 ## 패키지 구조
 <img src="https://user-images.githubusercontent.com/79445646/118147034-24a05900-b44a-11eb-9a97-1cde2c2a17ce.png" width="700">
 
 ---
 
+
 ## DB 모델링
 <img src="https://user-images.githubusercontent.com/79445646/118147089-308c1b00-b44a-11eb-8843-ec10d1f8c7d8.png" width="700">
 
 ---
+
 
 ## Front-End 주요기능
 ### BootStrap을 이용한 화면 설계 및 생성
@@ -268,7 +274,7 @@ function jusoCallBack(zipNo, roadAddrPart1, roadAddrPart2, addrDetail){
 ---
 
 >메인페이지
-- 로그인 전후 메인페이지 메뉴변환
+- 로그인 세션을 통해 메인페이지 메뉴변환
 ```jsp
 <!-- aside.jsp -->
 <!-- 로그인 안했을 때 -->
@@ -360,17 +366,54 @@ $(document).ready(function() {
 					}
 				}
 			}
-    };
+		};
 	$('#summernote').summernote(setting); 
 });
 ```
 
+- jstl "c"를 이용하여 게시글데이터 가져오기
+```jsp
+<!-- boardList.jsp -->
+<!-- 게시물이 없을때 -->
+<c:if test="${count==0}">
+	<tr>
+		<td colspan="7" align="center">등록된 게시물이 없습니다.</td>
+	</tr>
+</c:if>
+
+<!-- 게시물이 있을때 -->
+<c:forEach var="article" items="${list}">
+	<tr>
+		<td>${article.postnum}</td>
+		<td>${article.type}</td>
+		<td><a class="text-dark" id="board_title" href="read.do?postnum=${article.postnum}">${article.title}</a></td>
+		<td>${article.nickname}</td>
+		<td>${article.regdate}</td>
+		<td>${article.recommand}</td>
+		<td>${article.readcnt}</td>
+		<input type="hidden"  id="id" value="${article.id}">
+		<input type="hidden" id="boardnum" value="${article.boardnum}">
+		<input type="hidden" id="best" value="${article.best}">
+	</tr>
+</c:forEach>
+```
 ---
+
 
 ## Back-End 주요기능
-
+>회원가입
+- 
 
 ---
+
+>로그인
+
+---
+
+> 
+
+---
+
 
 <!-- Footer -->
 ## 보완할점
@@ -378,10 +421,12 @@ $(document).ready(function() {
 
 ---
 
+
 ## 오류해결
 
 
 ---
+
 
 ## 추가하지 못한 기능들
 
