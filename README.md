@@ -322,7 +322,7 @@ function jusoCallBack(zipNo, roadAddrPart1, roadAddrPart2, addrDetail){
 	</c:if>
 </c:if>	
 ```
-<img src="" width="900">
+<img src="https://user-images.githubusercontent.com/79445646/118356130-c93bab80-b5ae-11eb-8e19-b2f84ebf283f.gif" width="900">
 
 ---
 
