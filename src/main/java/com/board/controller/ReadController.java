@@ -52,7 +52,6 @@ public class ReadController {
 		//1.다운로드 받을 뷰객체(id), 2.모델객체명(키명), 3.전달할값(다운로드 받을 파일정보)
 		//1.이동할 페이지x(jsp 페이지 x)
 		return new ModelAndView("downloadView","downloadFile",downloadFile);
-		
 	}
 	*/
 }

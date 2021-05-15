@@ -14,18 +14,18 @@ import com.board.dao.BoardDao;
 @Controller
 public class DeleteController {
 	//Logger객체 -> 내부적인 처리과정 그 결과를 콘솔에 출력시켜줘서 확인
-	private Logger log=Logger.getLogger(this.getClass()); //(WriteController.class)
+	private Logger log=Logger.getLogger(this.getClass()); 
 	
 	@Autowired
 	private  BoardDao boardDao;
 	
 	@RequestMapping(value="/main/delete.do") 
 	public String deleteSubmit(@ModelAttribute("command") BoardCommand command) {
-		//src/main/java폴어 log4j.xml 복사 -> 편집
 		if(log.isDebugEnabled()) { //디버그 모드인지 체크(출력상태)
-			log.debug("BoardCommand -> "+command); //command.toString()
+			log.debug("BoardCommand -> "+command); 
 		}
 		 boardDao.deletePost(command.getPostnum());
 		return "redirect:/main/list.do";
 	}
+	
 }

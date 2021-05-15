@@ -6,7 +6,6 @@ public class PagingUtil {
 	private int startCount;	 // 한 페이지에서 보여줄 게시글의 시작 번호
 	private int endCount;	 // 한 페이지에서 보여줄 게시글의 끝 번호
 	private StringBuffer pagingHtml;// 페이징 생성자 ->이전,다음(<- ,->)
-
 	/**
 	 * currentPage : 현재페이지
 	 * totalCount : 전체 게시물 수
@@ -106,4 +105,5 @@ public class PagingUtil {
 	public int getEndCount() {
 		return endCount;
 	}
+	
 }

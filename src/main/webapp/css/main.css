@@ -1,4 +1,4 @@
-/* 모든 페이지 설정 */
+/* === 모든 페이지 설정 === */
 @import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css);
 @import url(https://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
@@ -14,7 +14,8 @@ body {
     margin-right: 0px !important;
 }
 
-/* header.jsp 폼설정 ============================================================== */
+/*===  header 폼설정 === */
+/* 헤더 바디 설정 */
 body { 
 	padding-top:90px;
 }
@@ -40,7 +41,7 @@ body {
 }
 
 
-/* aside.jsp 폼설정=============================================================== */
+/* === aside === */
 /* 메인페이지 화면에서 사이드바메뉴 크기설정 */
 #aside {
 	padding-right: 0px; 
@@ -115,6 +116,7 @@ img {
     border: 1px solid rgba(0,0,0,.125);
     border-radius: .25rem;
 }
+
 #message:hover, #mail:hover, #admin:hover {
 	color:#f8f9fa;
 	background:#343a40;
@@ -135,7 +137,7 @@ img {
     padding:0px;
 }
 
-/* footer 설정 ==================================================================*/
+/* === footer 설정 === */
 footer {
   margin-top:50px;
 }

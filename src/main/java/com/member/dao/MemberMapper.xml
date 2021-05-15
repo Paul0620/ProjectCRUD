@@ -66,6 +66,7 @@
   <select id="loginMember" resultType="MemberCommand">
   	select id,pwd,nickname from login_tb where id=#{id} and pwd=#{pwd}
   </select> 
+  
 </mapper>
 
 

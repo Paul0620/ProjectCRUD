@@ -122,6 +122,7 @@
 <select id="selectComment" resultType="CommentCommand">
 	select * from comment_tb where commentnum=${commentnum}
 </select>
+
 </mapper>
 
 

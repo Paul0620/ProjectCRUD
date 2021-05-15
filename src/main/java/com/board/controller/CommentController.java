@@ -23,15 +23,15 @@ import com.member.command.MemberCommand;
 @Component
 @Controller
 public class CommentController {
-	//로그객체를 생성 써야하나?
+	//오류내용을 알기위해 
 	private Logger log=Logger.getLogger(this.getClass());
 	
-	@Autowired  //대신 사용가능한 어노테이션 @Inject
+	@Autowired  //자동주입기능사용(의존주입대상), 대신 사용가능한 어노테이션 @Inject
 	private BoardDao boardDao;
 	
 	//댓글작성
 	@RequestMapping(value="/main/cWrite.do", method=RequestMethod.POST)
-	@ResponseBody
+	@ResponseBody //자바 객체를 HTTP 요청의 body내용으로 매핑하는 역할
 	public String insertComment(@ModelAttribute("comment") CommentCommand comment, HttpServletRequest request) throws Exception {
 		if(log.isDebugEnabled()) {
 			log.debug("CommentCommand -> "+comment);

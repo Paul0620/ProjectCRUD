@@ -33,4 +33,5 @@ public class LoginCommand {
 		this.nickname = nickname;
 		//System.out.println("nickname 호출");
 	}	
+	
 }

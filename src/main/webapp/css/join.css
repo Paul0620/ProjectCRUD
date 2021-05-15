@@ -1,4 +1,4 @@
-/* 모든 페이지 설정 */
+/* === 모든 페이지 설정 === */
 @import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css);
 @import url(https://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
@@ -10,7 +10,7 @@ body {
 	font-family:'Nanum Gothic';  	
 }
 
-/* join 회원가입/수정 설정 ============================================================*/
+/* === join 회원가입/수정 설정 === */
 /* 전체 폼 위치 설정 */
 .container {
 	margin-top: 80px;

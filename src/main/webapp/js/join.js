@@ -1,7 +1,7 @@
 /* 회원가입 버튼 클릭 후 체크 */
 $(document).ready(function(){		
 	$("#check-btn").on("click", function(){	
-		/*아이디
+		//아이디
 		if($("#id").val()==""){
 			alert("아이디를 입력해주세요.");
 			$("#id").focus();
@@ -11,7 +11,7 @@ $(document).ready(function(){
 		var idChkVal = $("#idCheck").val();
 		if(idChkVal == "N"){
 			alert("중복확인 버튼을 눌러주세요.");
-		}*/
+		}
 		//비밀번호
 		if($("#pwd").val()==""){
 			alert("비밀번호를 입력해주세요.");
@@ -43,13 +43,13 @@ $(document).ready(function(){
 		}
 		//이메일
 		if($("#email").val()==""){
-			alert("이름을 입력해주세요.");
+			alert("이메일을 입력해주세요.");
 			$("#email").focus();
 			return false;
 		}
 		//전화번호
 		if($("#phone").val()==""){
-			alert("이름을 입력해주세요.");
+			alert("전화번호를 입력해주세요.");
 			$("#phone").focus();
 			return false;
 		}
@@ -59,7 +59,6 @@ $(document).ready(function(){
 		var num = pw.search(/[0-9]/g);
 		var eng = pw.search(/[a-z]/ig);
 		var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
-		
 		if(pw.length < 8 || pw.length > 20){		
 			alert("8자리 ~ 20자리 이내로 입력해주세요.");
 			return false;
@@ -73,7 +72,6 @@ $(document).ready(function(){
 			null;
 		}else if(pw != "" || pw2 != ""){
     	  	if(pw == pw2) {
-    	  		
     	  	} else {
     	  		alert("비밀번호가 일치하지 않습니다. 재확인해주세요.");
     	  		return false;
@@ -83,7 +81,6 @@ $(document).ready(function(){
 		    return true;
 		} 
 	});
-
 });
 
 /* 아이디 중복버튼 클릭 후 체크 */
@@ -148,12 +145,6 @@ function goPopup(){
 /* 주소값 내보내기 */
 function jusoCallBack(zipNo, roadAddrPart1, roadAddrPart2, addrDetail){
 	// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
-	/*
-	document.form.zipNo.value = zipNo;
-	document.form.roadAddrPart1.value = roadAddrPart1;
-	document.form.roadAddrPart2.value = roadAddrPart2;
-	document.form.addrDetail.value = addrDetail;
-	*/
 	$("#zipNo").val(zipNo);
 	$("#roadAddrPart1").val(roadAddrPart1);
 	$("#roadAddrPart2").val(roadAddrPart2);

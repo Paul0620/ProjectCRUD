@@ -16,7 +16,7 @@ public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDao {
 	public List<BoardCommand> list(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		List<BoardCommand> list=getSqlSession().selectList("selectList",map);
-		System.out.println("list()호출됨!!");
+		//System.out.println("list()호출됨!!");
 		return list;
 	}
 
@@ -31,7 +31,7 @@ public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDao {
 		// TODO Auto-generated method stub
 		//Object -> Integer(래퍼클래스) -> int
 		int newPostnum=(Integer)getSqlSession().selectOne("getNewPostnum");
-		System.out.println("getNewPostnum()의 newPostnum -> "+newPostnum);
+		//System.out.println("getNewPostnum()의 newPostnum -> "+newPostnum);
 		return newPostnum;
 	}
 	
@@ -108,4 +108,5 @@ public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDao {
 	public CommentCommand selectComment(int commentnum) {
 		return (CommentCommand)getSqlSession().selectOne("selectComment",commentnum);
 	}
+	
 }

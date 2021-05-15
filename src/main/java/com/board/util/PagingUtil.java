@@ -16,23 +16,20 @@ public class PagingUtil {
 	 * addKey : 부가적인 key 없을 때는 null 처리 (&num=23형식으로 전달할 것)
 	 **/
 	
-	public PagingUtil(int currentPage, int totalCount, int blockCount,
-			int blockPage, String pageUrl) {
+	public PagingUtil(int currentPage, int totalCount, int blockCount, int blockPage, String pageUrl) {
 		this(null,null,currentPage,totalCount,blockCount,blockPage,pageUrl,null);
 	}
-	public PagingUtil(int currentPage, int totalCount, int blockCount,
-			int blockPage, String pageUrl, String addKey) {
+	
+	public PagingUtil(int currentPage, int totalCount, int blockCount, int blockPage, String pageUrl, String addKey) {
 		this(null,null,currentPage,totalCount,blockCount,blockPage,pageUrl,addKey);
 	}
-	public PagingUtil(String keyField, String keyWord, int currentPage, int totalCount, int blockCount,
-			int blockPage,String pageUrl) {
+	
+	public PagingUtil(String keyField, String keyWord, int currentPage, int totalCount, int blockCount, int blockPage,String pageUrl) {
 		this(null,null,currentPage,totalCount,blockCount,blockPage,pageUrl,null);
 	}
-	public PagingUtil(String keyField, String keyWord, int currentPage, int totalCount, int blockCount,
-			int blockPage,String pageUrl,String addKey) {
-		
+	
+	public PagingUtil(String keyField, String keyWord, int currentPage, int totalCount, int blockCount, int blockPage,String pageUrl,String addKey) {
 		if(addKey == null) addKey = ""; //부가키가 null 일때 ""처리
-		
 		// 전체 페이지 수			ex) 122/10=12.2 -> ceil은 무조건 올려주는 함수 -> 13.2 -> int -> 13
 		int totalPage = (int) Math.ceil((double) totalCount / blockCount);
 		if (totalPage == 0) {
@@ -64,7 +61,6 @@ public class PagingUtil {
 			pagingHtml.append("<");
 			pagingHtml.append("</a></li>");
 		}
-		/* pagingHtml.append("&nbsp;|&nbsp;"); */
 		//페이지 번호.현재 페이지는 빨간색으로 강조하고 링크를 제거.
 		for (int i = startPage; i <= endPage; i++) {
 			if (i > totalPage) {
@@ -85,9 +81,7 @@ public class PagingUtil {
 				pagingHtml.append(i);
 				pagingHtml.append("</a></li>");
 			}
-			/* pagingHtml.append("&nbsp;"); */
 		}
-		/* pagingHtml.append("&nbsp;&nbsp;|&nbsp;&nbsp;"); */
 		// 다음 block 페이지
 		if (totalPage - startPage >= blockPage) {
 			if(keyWord==null){//검색 미사용시
@@ -99,13 +93,17 @@ public class PagingUtil {
 			pagingHtml.append("</a></li>");
 		}
 	}
+	
 	public StringBuffer getPagingHtml() {
 		return pagingHtml; //링크문자열 가져오는 경우
 	}
+	
 	public int getStartCount() {
 		return startCount;
 	}
+	
 	public int getEndCount() {
 		return endCount;
 	}
+	
 }

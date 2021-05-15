@@ -17,9 +17,10 @@ import com.board.command.BoardCommand;
 import com.board.dao.BoardDao;
 import com.board.util.PagingUtil;
 
-@Component
+@Component //직접작성한 Class를 Bean으로 등록하기 위한 어노테이션
 @Controller
 public class ListController {
+	
 	private Logger log=Logger.getLogger(this.getClass());
 	
 	@Autowired
@@ -63,5 +64,6 @@ public class ListController {
 		mav.addObject("pagingHtml",page.getPagingHtml()); //링크 문자열
 		return mav; //${pagingHtml}(링크문자열 출력)
 	}
+	
 }
 

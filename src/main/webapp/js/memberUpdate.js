@@ -1,3 +1,4 @@
+/* === 회원수정 === */
 /* 회원수정 버튼클릭 후 체크 */
 $(document).ready(function(){
 	$("#check-btn").on("click", function(){	

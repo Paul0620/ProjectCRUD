@@ -12,7 +12,7 @@ public interface MemberDao {
 	//회원 목록보기(관리자용)
 	public List<MemberCommand> getMemberList(Map<String,Object> map);
 	
-	//총레코드수 구하기->형식@Select("실행할 SQL구문")
+	//총레코드수 구하기
 	public int getMemberCount();
 	
 	//회원가입

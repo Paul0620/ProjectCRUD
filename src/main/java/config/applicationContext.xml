@@ -37,8 +37,7 @@
 	</bean>
 
 	<!-- 3.SqlSessionFactoryBean 등록 -->
-	<!-- Mybatis설정이 필요(SqlSessionFactoryBean)  -->
-	<!-- (2)(Mybatis) bean등록(SqlSessionFactoryBean)
+	<!-- Mybatis bean등록(SqlSessionFactoryBean)
         1)configLcation->테이블에 대한 xml 파일을 불러올때 /WEB-INF/SqlMapConfig.xml -> 경로만 다름
         2)dataSource->DB연결정보 멤버변수
 	-->
@@ -47,7 +46,7 @@
 		<property name="dataSource" ref="dataSource" />
    </bean>
 	
-	<!-- (1).SqlSessionTemplate(sqlSession객체를 더 쉽게 얻어오기 위해서 설정) -->
+	<!-- SqlSessionTemplate(sqlSession객체를 더 쉽게 얻어오기 위해서 설정) -->
 	<bean id="sqlSessionTemplate"  class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory" />
 	</bean>

@@ -42,4 +42,5 @@ public class WriteController {
 		//return "redirect:/요청명령어" -> "이동할 페이지명(boardList.jsp)";
 		return "redirect:/main/list.do";	
 	}
+	
 }

@@ -1,4 +1,4 @@
-/* 댓글 js */
+/* === 댓글 설정 === */
 /* 댓글쓰기 */
 function fn_comment(postnum){  
 	var content=$("#content").val();

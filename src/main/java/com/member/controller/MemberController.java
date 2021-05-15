@@ -231,4 +231,5 @@ public class MemberController {
         //System.out.println("로그아웃!");
         return mav;
  	}
+	
 }

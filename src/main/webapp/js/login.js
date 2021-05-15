@@ -1,4 +1,4 @@
- /* 로그인 검사 */
+ /* === 로그인 검사 === */
 $(document).ready(function(){
 	$("#loginCheck").on("click", function(){
 		var userId = $("#id").val();

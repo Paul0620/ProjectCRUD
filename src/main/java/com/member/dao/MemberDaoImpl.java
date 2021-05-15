@@ -66,6 +66,7 @@ public class MemberDaoImpl extends SqlSessionDaoSupport implements MemberDao {
 
 	//로그인정보수정
 	public void updateLogin(LoginCommand login) {
+		//입력되어있는 값을 수정 후 추가
 		getSqlSession().update("updateLogin",login);
 	}
 	
