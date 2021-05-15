@@ -228,7 +228,7 @@ function fn_idCheck(){
 	});
 }
 ```
-<img src="https://user-images.githubusercontent.com/79445646/118353036-93db9180-b59f-11eb-937d-1f5545165805.gif" width="900">
+<img src="https://user-images.githubusercontent.com/79445646/118355828-377f6e80-b5ad-11eb-893b-c97d6d3d1241.gif" width="900">
 
 ---
 
