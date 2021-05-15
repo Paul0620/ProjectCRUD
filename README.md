@@ -228,7 +228,7 @@ function fn_idCheck(){
 	});
 }
 ```
-<img src="https://user-images.githubusercontent.com/79445646/118355828-377f6e80-b5ad-11eb-893b-c97d6d3d1241.gif" width="900">
+<img src="https://user-images.githubusercontent.com/79445646/118355788-02731c00-b5ad-11eb-9b0a-825b7926b6c7.gif" width="900">
 
 ---
 
@@ -269,7 +269,7 @@ function jusoCallBack(zipNo, roadAddrPart1, roadAddrPart2, addrDetail){
 	$("#addrDetail").val(addrDetail);
 }
 ```
-<img src="https://user-images.githubusercontent.com/79445646/118355788-02731c00-b5ad-11eb-9b0a-825b7926b6c7.gif" width="900">
+<img src="https://user-images.githubusercontent.com/79445646/118355828-377f6e80-b5ad-11eb-893b-c97d6d3d1241.gif" width="900">
 
 ---
 
