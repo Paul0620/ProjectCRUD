@@ -413,23 +413,23 @@ $(document).ready(function() {
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
   <display-name>CRUDFest</display-name>
-	<!-- applicationContext.xml에서 설정한 Bean을 모든 서블릿과 필터에서 공유하는 설정 -->
+<!-- applicationContext.xml에서 설정한 Bean을 모든 서블릿과 필터에서 공유하는 설정 -->
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>classpath:config/applicationContext.xml</param-value>
   </context-param>
-	<!-- 서블릿과 필터에 공유 할 수 있도록 리스너(이벤트 발생시 호출되어 처리)를 설정 -->
+<!-- 서블릿과 필터에 공유 할 수 있도록 리스너(이벤트 발생시 호출되어 처리)를 설정 -->
   <listener>
     <listener-class>
          org.springframework.web.context.ContextLoaderListener
       </listener-class>
   </listener>
-	<!-- dispatcher 서블릿 추가 -->
+<!-- dispatcher 서블릿 추가 -->
   <servlet>
     <servlet-name>dispatcher</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
   </servlet>
-	<!-- 모든 페이지에 한글 필터 설정 -->
+<!-- 모든 페이지에 한글 필터 설정 -->
   <servlet-mapping>
     <servlet-name>dispatcher</servlet-name>
     <url-pattern>*.do</url-pattern>
@@ -446,7 +446,7 @@ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/
     <filter-name>encodingFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
-	<!-- 기본페이지 설정 -->
+<!-- 기본페이지 설정 -->
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
@@ -466,10 +466,10 @@ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
        
-		<!-- component라는 어노테이션을 com가 들어간 모든 패키지에서 찾아서 어노테이션 적용 -->
+	<!-- component라는 어노테이션을 com가 들어간 모든 패키지에서 찾아서 어노테이션 적용 -->
     <context:component-scan base-package="com" />
  	
-		<!-- tiles(ViewResolver)설정 -->
+ 	<!-- tiles(ViewResolver)설정 -->
     <bean id="tilesConfigurer" 
      		 class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
         <property name="definitions">
@@ -608,22 +608,20 @@ jdbc.password=1234
 <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
 <log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
 
-<!--기본적인 출력양식이 설정  -->
+	<!--기본적인 출력양식이 설정  -->
 	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="[%p:%C{1}.%M()] %m%n" />
 		</layout>
 	</appender>
 
-<!-- dr.mini(패키지)로 시작하는 패키지내의 모든  클래스에서
-       정보를 출력(매개변수전달,객체값출력)
- -->
+	<!-- dr.mini(패키지)로 시작하는 패키지내의 모든  클래스에서 정보를 출력(매개변수전달,객체값출력) -->
 	<category name="dr.mini" additivity="false">
 		<priority value="debug" />
 		<appender-ref ref="STDOUT" />
 	</category>
 
-<!-- 에러가 발생이 될때 출력하도록 설정  -->
+	<!-- 에러가 발생이 될때 출력하도록 설정  -->
 	<root>
 		<priority value="error" />
 		<appender-ref ref="STDOUT" />
@@ -643,7 +641,7 @@ jdbc.password=1234
 
 <tiles-definitions>
 
-		<!-- 페이지 레이아웃 처리 및 js,css 관리 -->
+	<!-- 페이지 레이아웃 처리 및 js,css 관리 -->
     <definition name="mainpage" template="/WEB-INF/views/home.jsp">
         <put-attribute name="title" value="YOEGIMOYEO"/>
         <put-attribute name="css" value="/WEB-INF/views/script/css.jsp" />
