@@ -105,174 +105,6 @@ ___
 
 ## Front-End 주요기능
 ### BootStrap을 이용한 화면 설계 및 생성
->회원가입
-- 회원가입시 유효성 검사를 통해 필수입력공백, 비밀번호형식, 중복버튼클릭 유무 확인(공백처리는 로그인도 동일)
-```js
-/* join.js */
-/* 회원가입 버튼 클릭시 필수입력칸 체크후 체크 */
-$(document).ready(function(){		
-	$("#check-btn").on("click", function(){	
-		//아이디
-		if($("#id").val()==""){
-			alert("아이디를 입력해주세요.");
-			$("#id").focus();
-			return false;
-		}
-		//아이디 중복버튼
-		var idChkVal = $("#idCheck").val();
-		if(idChkVal == "N"){
-			alert("중복확인 버튼을 눌러주세요.");
-		}
-		//비밀번호
-		if($("#pwd").val()==""){
-			alert("비밀번호를 입력해주세요.");
-			$("#pwd").focus();
-			return false;
-		}
-		//비밀번호 확인
-		if($("#repwd").val()==""){
-			alert("비밀번호를 입력해주세요.");
-			$("#repwd").focus();
-			return false;
-		}
-		//닉네임
-		if($("#nickname").val()==""){
-			alert("닉네임을 입력해주세요.");
-			$("#nickname").focus();
-			return false;
-		}
-		//닉네임 중복버튼
-		var nicknameChkVal = $("#nicknameCheck").val();
-		if(nicknameChkVal == "N"){
-			alert("중복확인 버튼을 눌러주세요.");
-		}
-		//이름
-		if($("#name").val()==""){
-			alert("이름을 입력해주세요.");
-			$("#name").focus();
-			return false;
-		}
-		//이메일
-		if($("#email").val()==""){
-			alert("이메일을 입력해주세요.");
-			$("#email").focus();
-			return false;
-		}
-		//전화번호
-		if($("#phone").val()==""){
-			alert("전화번호를 입력해주세요.");
-			$("#phone").focus();
-			return false;
-		}
-		//비밀번호 입력양식 체크
-		var pw = $("#pwd").val();
-		var pw2 = $("#repwd").val();
-		var num = pw.search(/[0-9]/g);
-		var eng = pw.search(/[a-z]/ig);
-		var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
-		if(pw.length < 8 || pw.length > 20){		
-			alert("8자리 ~ 20자리 이내로 입력해주세요.");
-			return false;
-		}else if(pw.search(/\s/) != -1){
-			alert("비밀번호는 공백 없이 입력해주세요.");
-			return false;
-		}else if(num < 0 || eng < 0 || spe < 0 ){
-			alert("영문,숫자, 특수문자를 혼합하여 입력해주세요.");
-			return false;
-		}else if(pw != "" && pw2 == ""){
-			null;
-		}else if(pw != "" || pw2 != ""){
-			if(pw == pw2) {
-			} else {
-				alert("비밀번호가 일치하지 않습니다. 재확인해주세요.");
-				return false;
-			}
-		}else{
-			console.log("통과"); 
-			return true;
-		} 
-	});
-});
-```
-<img src="https://user-images.githubusercontent.com/79445646/118352727-e4ea8600-b59d-11eb-81de-06da5508eceb.gif" width="900">
-
----
-
-- 아이디 중복버튼 클릭시 공백체크 후 중복확인(=닉네임)
-```js
-/* join.js */
-/* 아이디 중복버튼 클릭시 아이디 확인 */
-function fn_idCheck(){
-	//중복체크시 아이디 공백체크 알림
-	if($("#id").val()==""){
-		alert("아이디를 입력해주세요.")
-		$("#id").focus();
-		return false;
-	}
-	//아이디 중복체크 결과알림창
-	$.ajax({
-		url : "idCheck.do",
-		type : "post",
-		dataType : "json",
-		data : {"id" : $("#id").val()},
-		success : function(data){
-			if(data == 1){
-				alert("중복된 아이디입니다.");
-				$("#idCheck").val("N");
-				return false;
-			}else if(data == 0){
-				$("#idCheck").val("Y");
-			alert("사용가능한 아이디입니다.");
-			}
-		}
-	});
-}
-```
-<img src="https://user-images.githubusercontent.com/79445646/118355788-02731c00-b5ad-11eb-9b0a-825b7926b6c7.gif" width="900">
-
----
-
-- 도로명주소API를 활용한 주소검색하기
-```js
-/* join.js */
-/* 주소창 팝업요청 */
-function goPopup(){
-	// 주소검색을 수행할 팝업 페이지를 호출합니다.
-	var pop = window.open("jusoPopup.do","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 	
-}
-
-/* 주소팝업창 */
-function init(){
-	var url = location.href;
-	var confmKey = "U01TX0FVVEgyMDIxMDMwNjE1NDkxMjExMDg4NjQ=";
-	var resultType = "4"; // 도로명주소 검색결과 화면 출력내용, 1 : 도로명, 2 : 도로명+지번+상세보기(관련지번, 관할주민센터), 3 : 도로명+상세보기(상세건물명), 4 : 도로명+지번+상세보기(관련지번, 관할주민센터, 상세건물명)
-	var inputYn= "<%=inputYn%>";
-	if(inputYn != "Y"){
-		document.form.confmKey.value = confmKey;
-		document.form.returnUrl.value = url;
-		document.form.resultType.value = resultType;
-		document.form.action="https://www.juso.go.kr/addrlink/addrLinkUrl.do"; //인터넷망
-		//document.form.action="https://www.juso.go.kr/addrlink/addrMobileLinkUrl.do"; //모바일 웹인 경우, 인터넷망
-		document.form.submit();
-	}else{
-		opener.jusoCallBack("<%=zipNo%>","<%=roadAddrPart1%>","<%=roadAddrPart2%>","<%=addrDetail%>");
-		window.close();
-	}
-}
-
-/* 주소값 내보내기 */
-function jusoCallBack(zipNo, roadAddrPart1, roadAddrPart2, addrDetail){
-	// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
-	$("#zipNo").val(zipNo);
-	$("#roadAddrPart1").val(roadAddrPart1);
-	$("#roadAddrPart2").val(roadAddrPart2);
-	$("#addrDetail").val(addrDetail);
-}
-```
-<img src="https://user-images.githubusercontent.com/79445646/118355828-377f6e80-b5ad-11eb-893b-c97d6d3d1241.gif" width="900">
-
----
-
 >메인페이지
 - 로그인 세션을 통해 메인페이지 메뉴변환
 ```jsp
@@ -403,7 +235,6 @@ $(document).ready(function() {
 <img src="https://user-images.githubusercontent.com/79445646/118447502-d205bc00-b72b-11eb-88e2-7f907889279b.gif" width="900">
 
 ---
-
 
 ## Back-End 주요기능
 >프로젝트 설정
@@ -672,15 +503,574 @@ jdbc.password=1234
 ---
 
 >회원가입
-- 
+- 회원가입시 유효성 검사를 통해 필수입력공백, 비밀번호형식, 중복버튼클릭 유무 확인(공백처리는 로그인도 동일)
+```js
+/* join.js */
+/* 회원가입 버튼 클릭시 필수입력칸 체크후 체크 */
+$(document).ready(function(){		
+	$("#check-btn").on("click", function(){	
+		//아이디
+		if($("#id").val()==""){
+			alert("아이디를 입력해주세요.");
+			$("#id").focus();
+			return false;
+		}
+		//아이디 중복버튼
+		var idChkVal = $("#idCheck").val();
+		if(idChkVal == "N"){
+			alert("중복확인 버튼을 눌러주세요.");
+		}
+		//비밀번호
+		if($("#pwd").val()==""){
+			alert("비밀번호를 입력해주세요.");
+			$("#pwd").focus();
+			return false;
+		}
+		//비밀번호 확인
+		if($("#repwd").val()==""){
+			alert("비밀번호를 입력해주세요.");
+			$("#repwd").focus();
+			return false;
+		}
+		//닉네임
+		if($("#nickname").val()==""){
+			alert("닉네임을 입력해주세요.");
+			$("#nickname").focus();
+			return false;
+		}
+		//닉네임 중복버튼
+		var nicknameChkVal = $("#nicknameCheck").val();
+		if(nicknameChkVal == "N"){
+			alert("중복확인 버튼을 눌러주세요.");
+		}
+		//이름
+		if($("#name").val()==""){
+			alert("이름을 입력해주세요.");
+			$("#name").focus();
+			return false;
+		}
+		//이메일
+		if($("#email").val()==""){
+			alert("이메일을 입력해주세요.");
+			$("#email").focus();
+			return false;
+		}
+		//전화번호
+		if($("#phone").val()==""){
+			alert("전화번호를 입력해주세요.");
+			$("#phone").focus();
+			return false;
+		}
+		//비밀번호 입력양식 체크
+		var pw = $("#pwd").val();
+		var pw2 = $("#repwd").val();
+		var num = pw.search(/[0-9]/g);
+		var eng = pw.search(/[a-z]/ig);
+		var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+		if(pw.length < 8 || pw.length > 20){		
+			alert("8자리 ~ 20자리 이내로 입력해주세요.");
+			return false;
+		}else if(pw.search(/\s/) != -1){
+			alert("비밀번호는 공백 없이 입력해주세요.");
+			return false;
+		}else if(num < 0 || eng < 0 || spe < 0 ){
+			alert("영문,숫자, 특수문자를 혼합하여 입력해주세요.");
+			return false;
+		}else if(pw != "" && pw2 == ""){
+			null;
+		}else if(pw != "" || pw2 != ""){
+			if(pw == pw2) {
+			} else {
+				alert("비밀번호가 일치하지 않습니다. 재확인해주세요.");
+				return false;
+			}
+		}else{
+			console.log("통과"); 
+			return true;
+		} 
+	});
+});
+```
+<img src="https://user-images.githubusercontent.com/79445646/118352727-e4ea8600-b59d-11eb-81de-06da5508eceb.gif" width="900">
+<img src="https://user-images.githubusercontent.com/79445646/118484173-e361bf00-b751-11eb-8d63-baba8c8054a4.gif" width="900">
+
+---
+
+- 아이디 중복버튼 클릭시 공백체크 후 중복확인(=닉네임)
+- 요청(유효성검사) > Controller > DaoImpl > Mybatis > DB(Oracle) > Controller에서 DB반환
+```js
+/* join.js */
+/* 아이디 중복버튼 클릭시 아이디 확인 */
+function fn_idCheck(){
+	//중복체크시 아이디 공백체크 알림
+	if($("#id").val()==""){
+		alert("아이디를 입력해주세요.")
+		$("#id").focus();
+		return false;
+	}
+	//아이디 중복체크 결과알림창
+	$.ajax({
+		url : "idCheck.do",
+		type : "post",
+		dataType : "json",
+		data : {"id" : $("#id").val()},
+		success : function(data){
+			if(data == 1){
+				alert("중복된 아이디입니다.");
+				$("#idCheck").val("N");
+				return false;
+			}else if(data == 0){
+				$("#idCheck").val("Y");
+			alert("사용가능한 아이디입니다.");
+			}
+		}
+	});
+}
+```
+
+```java
+/* MembcerController.java */
+//아이디 중복체크
+@ResponseBody
+@RequestMapping(value="/main/idCheck.do", method=RequestMethod.POST)
+public String idCheck(MemberCommand member, HttpServletRequest request){
+	//System.out.println("아이디 중복체크 :: "+request.getRequestURI());
+	int resultId=memberDao.idCheck(member);
+	//System.out.println("resultId -> "+resultId);
+	return String.valueOf(resultId);
+}
+```
+
+```java
+/* MemberDao.java */
+//아이디중복체크
+public int idCheck(MemberCommand member);
+```
+
+```java
+/* MemberDaoImpl.java */
+//아이디중복체크
+public int idCheck(MemberCommand member) {
+	//id값을 체크하여 리턴
+	int resultId=getSqlSession().selectOne("idCheck", member);
+	return resultId;
+}
+```
+
+```xml
+<!-- MemberMapper.xml -->
+<!-- 아이디중복체크 -->
+<select id="idCheck" resultType="int">
+	select count(*) from user_tb where id=#{id}
+</select>
+```
+<img src="https://user-images.githubusercontent.com/79445646/118355788-02731c00-b5ad-11eb-9b0a-825b7926b6c7.gif" width="900">
+
+---
+
+- 도로명주소API를 활용한 주소검색하기
+```js
+/* join.js */
+/* 주소창 팝업요청 */
+function goPopup(){
+	// 주소검색을 수행할 팝업 페이지를 호출합니다.
+	var pop = window.open("jusoPopup.do","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 	
+}
+
+/* 주소팝업창 */
+function init(){
+	var url = location.href;
+	var confmKey = "U01TX0FVVEgyMDIxMDMwNjE1NDkxMjExMDg4NjQ=";
+	var resultType = "4"; // 도로명주소 검색결과 화면 출력내용, 1 : 도로명, 2 : 도로명+지번+상세보기(관련지번, 관할주민센터), 3 : 도로명+상세보기(상세건물명), 4 : 도로명+지번+상세보기(관련지번, 관할주민센터, 상세건물명)
+	var inputYn= "<%=inputYn%>";
+	if(inputYn != "Y"){
+		document.form.confmKey.value = confmKey;
+		document.form.returnUrl.value = url;
+		document.form.resultType.value = resultType;
+		document.form.action="https://www.juso.go.kr/addrlink/addrLinkUrl.do"; //인터넷망
+		//document.form.action="https://www.juso.go.kr/addrlink/addrMobileLinkUrl.do"; //모바일 웹인 경우, 인터넷망
+		document.form.submit();
+	}else{
+		opener.jusoCallBack("<%=zipNo%>","<%=roadAddrPart1%>","<%=roadAddrPart2%>","<%=addrDetail%>");
+		window.close();
+	}
+}
+
+/* 주소값 내보내기 */
+function jusoCallBack(zipNo, roadAddrPart1, roadAddrPart2, addrDetail){
+	// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
+	$("#zipNo").val(zipNo);
+	$("#roadAddrPart1").val(roadAddrPart1);
+	$("#roadAddrPart2").val(roadAddrPart2);
+	$("#addrDetail").val(addrDetail);
+}
+```
+<img src="https://user-images.githubusercontent.com/79445646/118355828-377f6e80-b5ad-11eb-893b-c97d6d3d1241.gif" width="900">
 
 ---
 
 >로그인
+- 요청(유효성검사) > Controller > DaoImpl > Mybatis > DB(Oracle) > Controller에서 DB반환
+```js
+/* login.js */
+/* === 로그인 검사 === */
+$(document).ready(function(){
+	$("#loginCheck").on("click", function(){
+		var userId = $("#id").val();
+		var userPwd = $("#pwd").val();
+		
+		//로그인 입력바 공백체크 알림
+		if(userId == ""){
+			alert("아이디를 입력해 주세요");
+			$("#input_id").focus();
+			return false;
+		}
+		//비밀번호 입력바 공백체크 알림
+		if(userPwd == ""){
+			alert("비밀번호를 입력해 주세요");
+			$("#input_pwd").focus();
+			return false;
+		}
+		//폼 내부의 데이터를 전송할 주소
+		document.loginCheck.action="loginCheck.do"
+		//제출
+		document.loginCheck.submit();
+	});
+});
+```
+
+```java
+/* MemberController.java */
+//로그인 페이지로 이동
+@RequestMapping(value="/main/login.do",method=RequestMethod.GET)
+public String loginForm() {
+	return "login";
+}
+	
+//로그인
+@RequestMapping(value="/main/loginCheck.do", method=RequestMethod.POST)
+public String loginMember(MemberCommand member, HttpServletRequest req, Model model) {
+	if(log.isDebugEnabled()) { //디버그 모드인지 체크(출력상태)
+		log.debug("MemberCommand -> "+member);
+	}
+	HttpSession session=req.getSession();     
+	MemberCommand resultLogin=memberDao.loginMember(member);
+	if(resultLogin==null) {
+		session.setAttribute("resultLogin",null);
+		model.addAttribute("message",false);
+		return "login";
+	} else { 
+		session.setAttribute("resultLogin", resultLogin);
+				System.out.println("로그인!");   
+	}
+		return "redirect:/main/list.do";
+}
+```
+
+```java
+/* MemberDao.java */
+@Component //관리되는 객체임을 표시하기 위한 가장 기본적인 어노테이션, 자동으로 빈을 등록시켜주는 기능
+@Controller //해당 클래스가 컨트롤러임을 나타내기 위한 어노테이션
+public interface BoardDao {
+
+	//로그인
+	public MemberCommand loginMember(MemberCommand member);
+
+}
+```
+
+```java
+/* MemberDaoImpl.java */
+@Repository
+public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDao {
+		
+	//로그인
+	public MemberCommand loginMember(MemberCommand member) {
+		//해당하는 id값의 정보를 선택
+		return getSqlSession().selectOne("loginMember", member);
+	}
+
+}
+```
+
+```xml
+<!-- MemberMapper.xml -->
+<!-- 로그인 -->
+<select id="loginMember" resultType="MemberCommand">
+	select id,pwd,nickname from login_tb where id=#{id} and pwd=#{pwd}
+</select> 
+```
+<img src="https://user-images.githubusercontent.com/79445646/118493284-e661ad00-b75b-11eb-97eb-597c847c17e2.gif" width="900">
 
 ---
 
-> 
+>페이징&검색
+- 요청 > Controller > DaoImpl > Mybatis > DB(Oracle) > Controller에서 DB반환
+```java
+/* PagingUtil.java */
+//페이징처림
+package com.board.util;
+
+//페이징 처리를 해주는 클래스
+public class PagingUtil {
+	
+	private int startCount;	 // 한 페이지에서 보여줄 게시글의 시작 번호
+	private int endCount;	 // 한 페이지에서 보여줄 게시글의 끝 번호
+	private StringBuffer pagingHtml;// 페이징 생성자
+	/**
+	 * currentPage : 현재페이지
+	 * totalCount : 전체 게시물 수
+	 * blockCount : 한 페이지의  게시물의 수(=numPerPage)
+	 * blockPage : 한 화면에 보여줄 페이지 수(=numPerBlock)
+	 * pageUrl : 호출 페이지 url
+	 * addKey : 부가적인 key 없을 때는 null 처리 (&num=23형식으로 전달할 것)
+	 **/
+	
+	public PagingUtil(int currentPage, int totalCount, int blockCount, int blockPage, String pageUrl) {
+		this(null,null,currentPage,totalCount,blockCount,blockPage,pageUrl,null);
+	}
+	
+	public PagingUtil(int currentPage, int totalCount, int blockCount, int blockPage, String pageUrl, String addKey) {
+		this(null,null,currentPage,totalCount,blockCount,blockPage,pageUrl,addKey);
+	}
+	
+	public PagingUtil(String keyField, String keyWord, int currentPage, int totalCount, int blockCount, int blockPage,String pageUrl) {
+		this(null,null,currentPage,totalCount,blockCount,blockPage,pageUrl,null);
+	}
+	
+	public PagingUtil(String keyField, String keyWord, int currentPage, int totalCount, int blockCount, int blockPage,String pageUrl,String addKey) {
+		if(addKey == null) addKey = ""; //부가키가 null 일때 ""처리
+		// 전체 페이지 수			ex) 122/10=12.2 -> ceil은 무조건 올려주는 함수 -> 13.2 -> int -> 13
+		int totalPage = (int) Math.ceil((double) totalCount / blockCount);
+		if (totalPage == 0) {
+			totalPage = 1;
+		}
+		// 현재 페이지가 전체 페이지 수보다 크면 전체 페이지 수로 설정
+		if (currentPage > totalPage) {
+			currentPage = totalPage;
+		}
+		// 현재 페이지의 처음과 마지막 글의 번호 가져오기.
+		startCount = (currentPage - 1) * blockCount + 1;
+		endCount = currentPage * blockCount;
+		// 시작 페이지와 마지막 페이지 값 구하기.
+		int startPage = (int) ((currentPage - 1) / blockPage) * blockPage + 1;
+		int endPage = startPage + blockPage - 1;
+		// 마지막 페이지가 전체 페이지 수보다 크면 전체 페이지 수로 설정
+		if (endPage > totalPage) {
+			endPage = totalPage;
+		}
+		// 이전 block 페이지
+		pagingHtml = new StringBuffer();
+		if (currentPage > blockPage) {
+			if(keyWord==null){//검색 미사용시
+				pagingHtml.append("<li class='page-item'><a class='page-link' href="+pageUrl+"?pageNum="+ (startPage - 1) + addKey +">");
+			}else{
+				//StringBuffer클래스에서 문자열을 추가할 때 -> "문자열"+"문자열"을 말할때 append
+				pagingHtml.append("<li class='page-item'><a class='page-link' href="+pageUrl+"?keyField="+keyField+"&keyWord="+keyWord+"&pageNum="+ (startPage - 1) + addKey +">");
+			}
+			pagingHtml.append("<");
+			pagingHtml.append("</a></li>");
+		}
+		//페이지 번호.현재 페이지는 빨간색으로 강조하고 링크를 제거.
+		for (int i = startPage; i <= endPage; i++) {
+			if (i > totalPage) {
+				break;
+			}
+			if (i == currentPage) {
+				pagingHtml.append("<li class='page-item active'><a class='page-link'>");
+				pagingHtml.append(i);
+				pagingHtml.append("</a></li>");
+			} else {
+				if(keyWord==null){//검색 미사용시
+					pagingHtml.append("<li class='page-item'><a class='page-link' href="+pageUrl+"?pageNum=");
+				}else{
+					pagingHtml.append("<li class='page-item'><a class='page-link' href="+pageUrl+"?keyField="+keyField+"&keyWord="+keyWord+"&pageNum=");
+				}
+				pagingHtml.append(i);
+				pagingHtml.append(addKey+">");
+				pagingHtml.append(i);
+				pagingHtml.append("</a></li>");
+			}
+		}
+		// 다음 block 페이지
+		if (totalPage - startPage >= blockPage) {
+			if(keyWord==null){//검색 미사용시
+				pagingHtml.append("<li class='page-item'><a class='page-link' href="+pageUrl+"?pageNum="+ (endPage + 1) + addKey +">");
+			}else{
+				pagingHtml.append("<li class='page-item'><a class='page-link' href="+pageUrl+"?keyField="+keyField+"&keyWord="+keyWord+"&pageNum="+ (endPage + 1) + addKey +">");
+			}
+			pagingHtml.append(">");
+			pagingHtml.append("</a></li>");
+		}
+	}
+	
+	public StringBuffer getPagingHtml() {
+		return pagingHtml; //링크문자열 가져오는 경우
+	}
+	
+	public int getStartCount() {
+		return startCount;
+	}
+	
+	public int getEndCount() {
+		return endCount;
+	}
+	
+}
+```
+
+```java
+package com.board.controller;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.board.command.BoardCommand;
+import com.board.dao.BoardDao;
+import com.board.util.PagingUtil;
+
+@Component //직접작성한 Class를 Bean으로 등록하기 위한 어노테이션
+@Controller
+public class ListController {
+	
+	private Logger log=Logger.getLogger(this.getClass());
+	
+	@Autowired
+	private BoardDao boardtDao;
+	
+	//게시글 리스트 출력
+	@RequestMapping("/main/list.do")
+	public ModelAndView listForm(@RequestParam(value="pageNum",defaultValue="1") int currentPage,
+															@RequestParam(value="keyField",defaultValue="") String keyField,
+															@RequestParam(value="keyWord",defaultValue="") String keyWord) {
+		if(log.isDebugEnabled()) { //로그 객체가 디버깅모드상태라면?, 출력할 준비가 되어있다면
+			//System.out.println("출력준비 완료!");
+			log.debug("currentPage:"+currentPage); //log.debug("출력할 값")
+			log.debug("keyField:"+keyField);
+			log.debug("keyWord:"+keyWord); 
+		}
+		//검색분야,검색어를 전달 -> parameterType="map"
+		Map<String,Object> map=new HashMap<String,Object>();
+		map.put("keyField", keyField);
+		map.put("keyWord", keyWord);
+		//총레코드 수 또는 검색되 총 레코드 수
+		int count=boardtDao.getTotalCount(map);
+		//페이징 처리 클래스 생성자
+		//1.현재페이지 2.총레코드수 3.페이지당 게시물수 4.블럭당 페이지수 5.요청명령어 
+		PagingUtil page=new PagingUtil(currentPage,count,5,3,"list.do");
+		//start -> 페이지당 맨 첫번째 나오는 게시물 번호
+		map.put("start", page.getStartCount());
+		//<-> map.get("start") -> #{start}
+		map.put("end", page.getEndCount());		
+		List<BoardCommand> list=null;
+		if(count > 0) {
+			list=boardtDao.list(map); //keyField, keyWord, Start, end값이 각각 분리됨
+			//System.out.println("ListController의 list -> "+list);
+		} else {
+			list=Collections.emptyList(); //0적용
+		}
+		//System.out.println("ListController의 count -> "+count);
+		ModelAndView mav=new ModelAndView("mainpage"); //이동할 페이지명
+		mav.addObject("count",count); //총 레코드 수 ${count(키명)}
+		mav.addObject("list",list); //레코드 전체
+		mav.addObject("pagingHtml",page.getPagingHtml()); //링크 문자열
+		return mav; //${pagingHtml}(링크문자열 출력)
+	}
+	
+}
+```
+
+```java
+/* BoardDao.java */
+public interface BoardDao {
+	//글목록보기
+	public List<BoardCommand> list(Map<String,Object> map);
+
+	//총레코드 수(검색어에 맞는 레코드 수까지 포함)
+	public int getTotalCount(Map<String,Object> map);
+}
+```
+
+```java
+/* BoardDaoImpl.java */
+@Repository
+public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDao {
+
+	//글목록보기, 검색분야에 따른 검색어까지 조회(페이징 처리)
+	public List<BoardCommand> list(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		List<BoardCommand> list=getSqlSession().selectList("selectList",map);
+		//System.out.println("list()호출됨!!");
+		return list;
+	}
+
+	//총레코드 수(검색어에 맞는 레코드 수까지 포함)
+	public int getTotalCount(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return getSqlSession().selectOne("totalCount",map);
+	}
+
+}
+```
+
+```xml
+<!-- BoardMapper.xml -->
+<!--  1.모든 필드를 검색 2.번호 메기기 3.보여줄 필드 -->
+<select  id="selectList"  parameterType="map"  resultType="BoardCommand">
+	select postnum,id,boardnum,type,nickname,title,content,regdate,readcnt,recommand,best
+		from ( select a.*, rownum rnum from (select * from post_tb
+			<where>
+				<if test="keyWord!=null and keyField=='title'">
+					title like '%' || #{keyWord} || '%'
+				</if>
+				<if test="keyWord!=null and keyField=='nickname'">
+					nickname like '%' || #{keyWord} || '%'
+				</if>
+				<if test="keyWord!=null and keyField=='content'">
+					content like '%' || #{keyWord} || '%'
+				</if>
+				<if test="keyWord!=null and keyField=='all'">
+					title like '%' || #{keyWord} || '%'  or
+					nickname like '%' || #{keyWord} || '%'  or
+					content like '%' || #{keyWord} || '%'
+				</if>
+			</where> 
+	order by postnum desc ) a ) 
+	<![CDATA[where rnum >=#{start} AND rnum <=#{end}]]>
+</select>
+ 
+<!-- 검색어에 해당하는 총 레코드 수 구하기 -->
+<select id="totalCount" parameterType="map" resultType="Integer">
+	select count(*) from post_tb
+	<where>
+		<if test="keyWord!=null and keyField=='title'">
+			title like '%' || #{keyWord} || '%'
+		</if>
+		<if test="keyWord!=null and keyField=='nickname'">
+			nickname like '%' || #{keyWord} || '%'
+		</if>
+		<if test="keyWord!=null and keyField=='content'">
+			content like '%' || #{keyWord} || '%'
+		</if>
+		<if test="keyWord!=null and keyField=='all'">
+			title like '%' || #{keyWord} || '%'  or
+			nickname like '%' || #{keyWord} || '%'  or
+			content like '%' || #{keyWord} || '%'
+		</if>
+	</where>
+</select>
+```
+<img src="" width="900">
 
 ---
 
