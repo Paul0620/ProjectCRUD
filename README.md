@@ -406,6 +406,275 @@ $(document).ready(function() {
 
 
 ## Back-End 주요기능
+>프로젝트 설정
+- Web.xml
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>CRUDFest</display-name>
+	<!-- applicationContext.xml에서 설정한 Bean을 모든 서블릿과 필터에서 공유하는 설정 -->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:config/applicationContext.xml</param-value>
+  </context-param>
+	<!-- 서블릿과 필터에 공유 할 수 있도록 리스너(이벤트 발생시 호출되어 처리)를 설정 -->
+  <listener>
+    <listener-class>
+         org.springframework.web.context.ContextLoaderListener
+      </listener-class>
+  </listener>
+	<!-- dispatcher 서블릿 추가 -->
+  <servlet>
+    <servlet-name>dispatcher</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  </servlet>
+	<!-- 모든 페이지에 한글 필터 설정 -->
+  <servlet-mapping>
+    <servlet-name>dispatcher</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  <filter>
+    <filter-name>encodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>encodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+	<!-- 기본페이지 설정 -->
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
+```
+---
+
+- dispatcher-servlet.xml
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+       
+	<!-- component라는 어노테이션을 com가 들어간 모든 패키지에서 찾아서 어노테이션 적용 -->
+    <context:component-scan base-package="com" />
+ 	
+ 
+	 <!-- tiles(ViewResolver)설정 -->
+    <bean id="tilesConfigurer" 
+     		 class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+        <property name="definitions">
+            <list>
+                <value>/WEB-INF/tiles/tiles.xml</value>
+            </list>
+        </property>
+    </bean>
+    
+    <!-- header, footer, aside, body 레이아웃 -->
+    <bean id="tilesViewResolver" 
+    		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <property name="viewClass"
+         value="org.springframework.web.servlet.view.tiles3.TilesView"/>
+        <property name="order" value="1"/>
+    </bean>
+    
+    <!-- 회원관리, 로그인 페이지 이동 처리를 위해 -->
+    <bean id="viewResolver"
+	      class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	     <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+	     <property name="prefix" value="/WEB-INF/views/member/" />
+	     <property name="suffix" value=".jsp" />
+	     <property name="order" value="2"/>
+	</bean>
+    
+    <!-- 예외페이지 작성(에러가 발생이 될 때 개발자가 작성한 예외페이지로 이동) -->
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="java.lang.Exception">pageError</prop>
+            </props>
+        </property>
+    </bean>
+ 	
+</beans>
+```
+---
+
+- applicationContext.xml
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<!-- 외부 설정 프로퍼티 설정(프로퍼티 파일을 사용하기 위해) -->
+    <bean id="propertyConfigurer" 
+              class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:config/jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+      
+	<!-- 커넥션 풀을 이용한 DataSource 설정(DB와 연결된 객체를 pool에 저장해서 사용) -->
+	<bean id="dataSource"
+       class="org.apache.commons.dbcp.BasicDataSource">
+	    <property name="driverClassName" value="${jdbc.driverClassName}"/>
+		<property name="url" value="${jdbc.url}"/>
+		<property name="username" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+		<!-- 최대 커넥션 개수 -->
+		<property name="maxActive" value="50"></property>
+		<!-- 접속이 없을 경우 최대 유지 커넥션 개수 -->
+		<property name="maxIdle" value="30"></property>
+		<!-- 접속이 없을 경우 최소 유지 커넥션 개수 -->
+		<property name="minIdle" value="50"></property>
+		<!-- 최대 대기시간(초) : 초과시 연결실패 오류 발생 -->
+		<property name="maxWait" value="5"></property>
+	</bean>
+
+	<!-- Mybatis bean등록(SqlSessionFactoryBean) - dataSource를 이용한 DB와 MyBatis 연결 설정 -->
+	<bean id="sqlSessionFactory"  class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation"  value="classpath:config/SqlMapConfig.xml"  />
+		<property name="dataSource" ref="dataSource" />
+   </bean>
+	
+	<!-- SqlSessionTemplate(sqlSession객체를 더 쉽게 얻어오기 위해서 설정) -->
+	<bean id="sqlSessionTemplate"  class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+	
+</beans>
+```
+---
+
+- SqlMapConfig.xml
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "HTTP://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!-- DB 접속 후 테이블의 정보를 가져오는 환경설정 -->
+<configuration>
+	<settings>
+		<setting name="cacheEnabled" value="false" />
+        <setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+	
+	<!-- DTO클래스 별칭부여 -->
+	<typeAliases>
+	    <typeAlias alias="BoardCommand" type="com.board.command.BoardCommand"/>
+	    <typeAlias alias="CommentCommand" type="com.board.command.CommentCommand"/>
+	    <typeAlias alias="FileCommand" type="com.board.command.FileCommand"/>
+	    <typeAlias alias="MemberCommand" type="com.member.command.MemberCommand"/>	    
+	    <typeAlias alias="LoginCommand" type="com.member.command.LoginCommand"/>
+	</typeAliases>
+	
+	<!-- DB 접속 후 불러올 Sql구문을 입력해놓을 xml 저장경로 위치 설정 -->
+	<mappers>
+	    <mapper resource="com/board/dao/BoardMapper.xml"/>
+	    <mapper resource="com/member/dao/MemberMapper.xml"/>
+	</mappers>
+
+</configuration>
+```
+---
+- jdbc.properties
+```properties
+#연결할 DB 드라이버이름/주소, 접속할 계정/비밀번호 설정
+jdbc.driverClassName=oracle.jdbc.driver.OracleDriver
+jdbc.url=jdbc:oracle:thin:@localhost:1521:orcl
+jdbc.username=crud
+jdbc.password=1234
+```
+---
+- Log4j.xml
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+<!--기본적인 출력양식이 설정  -->
+	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%p:%C{1}.%M()] %m%n" />
+		</layout>
+	</appender>
+
+<!-- dr.mini(패키지)로 시작하는 패키지내의 모든  클래스에서
+       정보를 출력(매개변수전달,객체값출력)
+ -->
+	<category name="dr.mini" additivity="false">
+		<priority value="debug" />
+		<appender-ref ref="STDOUT" />
+	</category>
+
+<!-- 에러가 발생이 될때 출력하도록 설정  -->
+	<root>
+		<priority value="error" />
+		<appender-ref ref="STDOUT" />
+	</root>
+
+</log4j:configuration>
+```
+---
+
+>화면 레이아웃
+- Tiles를 활용하여 header, aside, footer, js/css 반복코드 제거
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+		<!-- 페이지 레이아웃 처리 및 js,css 관리 -->
+    <definition name="mainpage" template="/WEB-INF/views/home.jsp">
+        <put-attribute name="title" value="YOEGIMOYEO"/>
+        <put-attribute name="css" value="/WEB-INF/views/script/css.jsp" />
+        <put-attribute name="js" value="/WEB-INF/views/script/js.jsp" />
+        <put-attribute name="header" value="/WEB-INF/views/header.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/board/boardList.jsp" />
+        <put-attribute name="aside" value="/WEB-INF/views/aside.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" /> 
+    </definition>
+    
+   	<!-- body -->  	
+   	<definition name="boardWrite" extends="mainpage">
+   		<put-attribute name="title" value="글쓰기"/>
+   		<put-attribute name="body" value="/WEB-INF/views/board/boardWrite.jsp" />
+   	</definition>
+   	
+   	<definition name="boardRead" extends="mainpage">
+   		<put-attribute name="title" value="글보기"/>
+   		<put-attribute name="body" value="/WEB-INF/views/board/boardRead.jsp" />
+   	</definition>
+   	
+   	<definition name="boardUpdate" extends="mainpage">
+   		<put-attribute name="title" value="글수정"/>
+   		<put-attribute name="body" value="/WEB-INF/views/board/boardUpdate.jsp" />
+   	</definition> 
+
+</tiles-definitions>
+```
+---
+
 >회원가입
 - 
 
