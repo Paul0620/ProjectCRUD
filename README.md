@@ -532,8 +532,7 @@ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/
 	</bean>
       
 	<!-- 커넥션 풀을 이용한 DataSource 설정(DB와 연결된 객체를 pool에 저장해서 사용) -->
-	<bean id="dataSource"
-       class="org.apache.commons.dbcp.BasicDataSource">
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 	    <property name="driverClassName" value="${jdbc.driverClassName}"/>
 		<property name="url" value="${jdbc.url}"/>
 		<property name="username" value="${jdbc.username}"/>
