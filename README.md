@@ -370,6 +370,9 @@ $(document).ready(function() {
 	$('#summernote').summernote(setting); 
 });
 ```
+<img src="https://user-images.githubusercontent.com/79445646/118446063-290a9180-b72a-11eb-9b25-d7616df84abe.gif" width="900">
+
+---
 
 - jstl "c"를 이용하여 게시글데이터 가져오기
 ```jsp
@@ -397,6 +400,8 @@ $(document).ready(function() {
 	</tr>
 </c:forEach>
 ```
+<img src="https://user-images.githubusercontent.com/79445646/118447502-d205bc00-b72b-11eb-88e2-7f907889279b.gif" width="900">
+
 ---
 
 
