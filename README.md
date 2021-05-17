@@ -466,11 +466,10 @@ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
        
-	<!-- component라는 어노테이션을 com가 들어간 모든 패키지에서 찾아서 어노테이션 적용 -->
+		<!-- component라는 어노테이션을 com가 들어간 모든 패키지에서 찾아서 어노테이션 적용 -->
     <context:component-scan base-package="com" />
  	
- 
-	 <!-- tiles(ViewResolver)설정 -->
+		<!-- tiles(ViewResolver)설정 -->
     <bean id="tilesConfigurer" 
      		 class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
         <property name="definitions">
