@@ -1075,47 +1075,58 @@ public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDao {
 ---
 
 - 게시글 작성하기
-<img src="" width="900">
+
+<img src="https://user-images.githubusercontent.com/79445646/118577632-b949e480-b7c5-11eb-8195-c491b63453af.gif" width="900">
 
 ---
 
 - 게시글 내용보기
-<img src="" width="900">
 
----
-
-- 게시글 수정하기
-<img src="" width="900">
+<img src="https://user-images.githubusercontent.com/79445646/118577838-15ad0400-b7c6-11eb-837a-c3b498e955e3.gif" width="900">
 
 ---
 
 - 조회수 증가
-<img src="" width="900">
+
+<img src="https://user-images.githubusercontent.com/79445646/118577845-180f5e00-b7c6-11eb-83c9-052157d9101a.gif" width="900">
+
+---
+
+- 게시글 수정하기
+
+<img src="https://user-images.githubusercontent.com/79445646/118578275-d29f6080-b7c6-11eb-9df5-0fbc20bc94d9.gif" width="900">
 
 ---
 
 - 게시글 삭제하기
-<img src="" width="900">
+
+<img src="https://user-images.githubusercontent.com/79445646/118578333-ee0a6b80-b7c6-11eb-9246-3ca8da446dcb.gif" width="900">
 
 ---
 
 - 회원가입
-<img src="" width="900">
+
+<img src="https://user-images.githubusercontent.com/79445646/118578606-65d89600-b7c7-11eb-99fa-15972974d0df.gif" width="900">
+
+<img src="https://user-images.githubusercontent.com/79445646/118578629-72f58500-b7c7-11eb-98a4-3144752d6581.gif" width="900">
 
 ---
 
 - 회원정보
-<img src="" width="900">
+
+<img src="https://user-images.githubusercontent.com/79445646/118579055-4857fc00-b7c8-11eb-9c42-562408f76004.gif" width="900">
 
 ---
 
 - 회원수정
-<img src="" width="900">
+
+<img src="https://user-images.githubusercontent.com/79445646/118579069-5017a080-b7c8-11eb-8111-ffe7ed39fbdf.gif" width="900">
 
 ---
 
 - 회원탈퇴
-<img src="" width="900">
+
+<img src="https://user-images.githubusercontent.com/79445646/118579088-586fdb80-b7c8-11eb-9d88-a399ac0403a6.gif" width="900">
 
 ---
 
@@ -1153,4 +1164,3 @@ public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDao {
 - 페이지 레이아웃을 사용하고나서 프로젝트를 실행했을 때 일부 부트스트랩 기능이 동작하지않음 > 각 페이지마다 부트스트랩 링크를 걸어놔서 한페이지에 불러온 페이지들이 충돌이 일어났던 것 > css용 jsp를 만들어 모든 링크를 해당 jsp안에 걸고 따로 처리
 - ORA-02291: 무결성 제약조건(CRUD.FK_BOARD_TB_TO_POST_TB)이 위배되었습니다- 부모 키가 없습니다. > 게시글 작성시 boardWrite.jsp에서 form태그 안에 외래키인 게시판번호 값을 넣지 않아 오류발생 > hidden 객체로 게시판 번호값을 추가하여 같이 전송처리
 ---
-
