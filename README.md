@@ -1145,6 +1145,7 @@ public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDao {
 
 >보안점
 - 자동로그인 추가
+- 회원가입전에 약관동의서 추가
 - 로그인 화면에서 계정정보 저장 체크 추가
 - 게시판번호를 통한 게시판 분류 추가
 - 게시글 추천수 증가 추가
